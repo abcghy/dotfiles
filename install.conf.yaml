@@ -1,0 +1,11 @@
+- defaults:
+    link:
+        relink: true
+
+- link:
+    ~/.config/nvim:
+        create: true
+        path: nvim
+    ~/.doom.d:
+        create: true
+        path: .doom.d
