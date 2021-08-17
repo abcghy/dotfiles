@@ -1,0 +1,73 @@
+map <Space> <Nop>
+let mapleader=" "
+
+syntax on
+set autoindent
+set expandtab        "使用空格而不是tab制表符
+set softtabstop =4
+set shiftwidth  =4
+set shiftround
+
+set number
+set relativenumber
+set cursorline
+set wrap
+
+set hlsearch
+exec ":nohlsearch"
+set incsearch
+set ignorecase
+set smartcase
+
+filetype plugin on
+
+noremap <LEADER><CR> :nohlsearch<CR>
+
+"在下面开一个新的 window
+map <LEADER>ws :split<CR>
+"在右边开一个新的 windnow
+map <LEADER>wv :vsplit<CR>
+"在下面开一个新的 window 并跳转过去
+map <LEADER>wS <LEADER>ws<LEADER>wj
+"在右边开一个新的 window 并跳转过去
+map <LEADER>wV <LEADER>wv<LEADER>wl
+
+noremap <LEADER>wh <C-w>h
+map <LEADER>wj <C-w>j
+noremap <LEADER>wk <C-w>k
+map <LEADER>wl <C-w>l
+noremap <LEADER>wd :close<CR>
+" todo: 在 Markdown 里面勾选将 - [ ] 变成 - [x]
+"noremap <LEADER>cc 0f[lclx<Esc>
+
+noremap J 5j
+noremap K 5k
+
+" 更改缩进的时候，还是保持选择状态
+xnoremap < <gv
+xnoremap > >gv
+
+map s <nop>
+map S :w<CR>
+map R :source $MYVIMRC<CR>
+
+" 使用 <CTRL-p> 和 <CTRL-n> 在 command 里执行上下
+cnoremap <c-n> <down>
+cnoremap <c-p> <up>
+
+imap jj <Esc>
+
+"map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
+"
+
+""" 回到原来退出的位置
+"autocmd BufReadPost *
+    "\ if line("'\"") > 1 && line("'\"") <= line("$") |
+    "\   exe "normal! g`\"" |
+    "\ endif
+"autocmd InsertLeave,WinEnter * set cursorline
+"autocmd InsertEnter,WinLeave * set nocursorline
+
+""" 复制和粘贴都剪切板里过
+set clipboard=unnamedplus
+
