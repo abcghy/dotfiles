@@ -10,3 +10,4 @@
         create: true
         path: .doom.d
     ~/.ideavimrc: .ideavimrc
+    ~/Library/Application Support/jesseduffield/lazygit/config.yml: lazygit.yml

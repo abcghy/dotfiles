@@ -1,0 +1,27 @@
+customCommands:
+  - key: 'N'
+    prompts:
+      - type: 'input'
+        title: 'What is the new branch name?'
+        initialValue: 'Feature/Harry/'
+    command: "git checkout -b {{index .PromptResponses 0}}"
+    context: 'localBranches'
+    loadingText: 'creating branch'
+
+  - key: 'G'
+    prompts:
+      - type: 'menu'
+        title: '你要向哪个分支提交 PR?'
+        options:
+          - name: 'Cards-42.1'
+            description: 'Cards'
+            value: 'Release/Cards/42.1'
+          - name: 'Gifts-43.0'
+            description: 'Gifts'
+            value: 'Release/Gifts/43.0'
+    command: 'gh pr create -B {{index .PromptResponses 0}} -r padelee88 -r Pingapplepie -r JammyZ -r 404-alan -r FilipTudic -r viktorplanetart -r leon-plannetart -r lifei1207 --fill'
+    context: 'global'
+    subprocess: true
+    loadingText: '正在提交 PR'
+
+
