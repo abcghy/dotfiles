@@ -1,0 +1,23 @@
+[normal]
+neovim
+zsh
+zim (not brew)
+lazygit
+ranger
+tmux
+tldr
+
+[cask]
+iterm2
+android-studio
+netnewswire
+dropbox
+logseq
+iina
+alt-tab
+monitorcontrol
+firefox
+wechat
+
+[mas]
+magnet

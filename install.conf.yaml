@@ -3,11 +3,7 @@
         relink: true
 
 - link:
-    ~/.config/nvim:
-        create: true
-        path: nvim
-    ~/.doom.d:
-        create: true
-        path: .doom.d
     ~/.ideavimrc: .ideavimrc
     ~/Library/Application Support/lazygit/config.yml: lazygit.yml
+    ~/.zshrc: zsh/.zshrc
+    ~/.zimrc: zsh/.zimrc
