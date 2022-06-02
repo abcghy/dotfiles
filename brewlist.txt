@@ -18,6 +18,7 @@ alt-tab
 monitorcontrol
 firefox
 wechat
+telegram
 
 [mas]
 magnet
