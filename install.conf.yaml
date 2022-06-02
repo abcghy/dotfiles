@@ -7,3 +7,4 @@
     ~/Library/Application Support/lazygit/config.yml: lazygit.yml
     ~/.zshrc: zsh/.zshrc
     ~/.zimrc: zsh/.zimrc
+    ~/.config/nvim: nvim
