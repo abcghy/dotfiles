@@ -2,9 +2,3 @@
 	path = dotbot
 	url = https://github.com/anishathalye/dotbot
 	ignore = dirty
-[submodule "nvim"]
-	path = nvim
-	url = https://github.com/abcghy/MyConfigs.git
-[submodule ".doom.d"]
-	path = .doom.d
-	url = https://github.com/abcghy/DoomConfig.git
