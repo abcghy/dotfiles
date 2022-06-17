@@ -143,3 +143,6 @@ unset key
 alias vim=nvim
 alias ra=ranger
 alias lg=lazygit
+
+export PATH="/usr/local/opt/node@16/bin:$PATH"
+export PATH="$HOME/Library/Android/sdk/platform-tools:$PATH"

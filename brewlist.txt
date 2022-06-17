@@ -6,6 +6,8 @@ lazygit
 ranger
 tmux
 tldr
+fd
+gh
 
 [cask]
 iterm2
@@ -19,6 +21,8 @@ monitorcontrol
 firefox
 wechat
 telegram
+intellij-idea
+webstorm
 
 [mas]
 magnet
