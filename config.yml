@@ -1,0 +1,9 @@
+customCommands:
+  - key: 'N'
+    prompts:
+      - type: 'input'
+        title: "New Branch Name (Branch is off of '{{.SelectedLocalBranch.Name}}')"
+        initialValue: 'Feature/Harry/'
+    context: 'localBranches'
+    loadingText: 'creating branch'
+    command: 'git checkout -b {{index .PromptResponses 0}}'

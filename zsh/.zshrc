@@ -144,5 +144,14 @@ alias vim=nvim
 alias ra=ranger
 alias lg=lazygit
 
+export EDITOR=nvim
+
 export PATH="/usr/local/opt/node@16/bin:$PATH"
 export PATH="$HOME/Library/Android/sdk/platform-tools:$PATH"
+
+[ -f "/Users/sakura/.ghcup/env" ] && source "/Users/sakura/.ghcup/env" # ghcup-env
+
+# GPG stuff
+export GPG_TTY=$(tty)
+
+export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"

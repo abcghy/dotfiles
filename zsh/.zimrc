@@ -56,3 +56,7 @@ zmodule zsh-users/zsh-autosuggestions
 
 
 zmodule romkatv/powerlevel10k --use degit
+
+# quick jump
+zmodule https://github.com/agkozak/zsh-z
+

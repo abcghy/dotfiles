@@ -8,6 +8,12 @@ tmux
 tldr
 fd
 gh
+bat
+jadx
+tmuxinator
+gpg2
+gnupg
+pinentry-mac
 
 [cask]
 iterm2
@@ -23,6 +29,12 @@ wechat
 telegram
 intellij-idea
 webstorm
+slack
+font-sarasa-nerd (tap laishulu/cask-fonts)
+visual-studio-code
+microsoft-outlook
+todoist
+postman
 
 [mas]
 magnet

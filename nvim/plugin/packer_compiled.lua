@@ -84,6 +84,11 @@ _G.packer_plugins = {
     path = "/Users/sakura/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
   },
+  ["psc-ide-vim"] = {
+    loaded = true,
+    path = "/Users/sakura/.local/share/nvim/site/pack/packer/start/psc-ide-vim",
+    url = "https://github.com/frigoeu/psc-ide-vim"
+  },
   ["vim-commentary"] = {
     loaded = true,
     path = "/Users/sakura/.local/share/nvim/site/pack/packer/start/vim-commentary",
