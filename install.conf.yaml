@@ -8,3 +8,4 @@
     ~/.zshrc: zsh/.zshrc
     ~/.zimrc: zsh/.zimrc
     ~/.config/nvim: nvim
+    ~/.config/kitty/kitty.conf: kitty.conf
