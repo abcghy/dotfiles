@@ -35,4 +35,7 @@ return require('packer').startup(function()
   use {
     'kdheepak/lazygit.nvim'
   }
+
+  use {'kevinhwang91/nvim-hlslens'}
+
 end)

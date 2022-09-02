@@ -79,6 +79,11 @@ _G.packer_plugins = {
     path = "/Users/sakura/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
   },
+  ["nvim-hlslens"] = {
+    loaded = true,
+    path = "/Users/sakura/.local/share/nvim/site/pack/packer/start/nvim-hlslens",
+    url = "https://github.com/kevinhwang91/nvim-hlslens"
+  },
   ["nvim-tree.lua"] = {
     loaded = true,
     path = "/Users/sakura/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
