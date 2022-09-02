@@ -13,7 +13,29 @@ require('lualine').setup {
     }
 }
 
-require('nvim-tree').setup()
+require('nvim-tree').setup({
+    hijack_cursor = true,
+    view = {
+        width = 50,
+        mappings = {
+            list = {
+                { key = { "<CR>", "l", }, action = "edit" },
+                { key = { "<BS>", "h", }, action = "close_node"},
+            },
+        },
+    },
+    renderer = {
+        indent_markers = {
+            enable = true,
+        },
+        icons = {
+            show = {
+                folder = false,
+            },
+        },
+        highlight_opened_files = "all",
+    },
+})
 END
 
 :set tabstop=4
@@ -22,4 +44,23 @@ END
 
 set clipboard+=unnamedplus
 
-set nu! rnu!
+set nu rnu
+set cursorline
+set cursorcolumn
+
+nnoremap <SPACE> <Nop>
+let mapleader = " " " map leader to Space
+
+nnoremap <Leader>w <C-w>
+nnoremap R :source $MYVIMRC<cr>
+nnoremap tt :NvimTreeToggle<cr>
+
+nnoremap J 10j
+nnoremap K 10k
+
+""" telescope
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+
+""" lazygit
+nnoremap <silent> <leader>gg :LazyGit<CR>
+
