@@ -12,6 +12,8 @@ require('lualine').setup {
         theme = 'palenight'
     }
 }
+
+require('nvim-tree').setup()
 END
 
 :set tabstop=4
@@ -20,3 +22,4 @@ END
 
 set clipboard+=unnamedplus
 
+set nu! rnu!
