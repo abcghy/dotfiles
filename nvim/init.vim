@@ -67,17 +67,25 @@ nnoremap <SPACE> <Nop>
 let mapleader = " " " map leader to Space
 
 nnoremap <Leader>w <C-w>
+nnoremap <Leader>wd :close<cr>
 nnoremap R :source $MYVIMRC<cr>
 nnoremap tt :NvimTreeToggle<cr>
+nnoremap tf :NvimTreeFocus<cr>
 
 nnoremap J 10j
 nnoremap K 10k
 
 """ telescope
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 """ lazygit
 nnoremap <silent> <leader>gg :LazyGit<CR>
+
+""" wilder.nvim
+" call wilder#setup({'modes': [':', '/', '?']})
 
 colorscheme one
 " set background=light
