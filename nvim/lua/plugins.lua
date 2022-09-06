@@ -38,4 +38,7 @@ return require('packer').startup(function()
 
   use {'kevinhwang91/nvim-hlslens'}
 
+
+  use {'rakr/vim-one'}
+
 end)

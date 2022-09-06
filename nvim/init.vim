@@ -9,7 +9,8 @@ augroup end
 lua << END
 require('lualine').setup {
     options = {
-        theme = 'palenight'
+        -- https://github.com/nvim-lualine/lualine.nvim/blob/master/THEMES.md
+        theme = 'onedark'
     }
 }
 
@@ -63,4 +64,10 @@ nnoremap <leader>ff <cmd>Telescope find_files<cr>
 
 """ lazygit
 nnoremap <silent> <leader>gg :LazyGit<CR>
+
+colorscheme one
+" set background=light
+set background=dark
+set termguicolors
+" hi Normal guibg=NONE ctermbg=NONE
 
