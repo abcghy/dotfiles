@@ -46,4 +46,37 @@ return require('packer').startup(function()
     -- tag = 'release' -- To use the latest release (do not use this if you run Neovim nightly or dev builds!)
   }
 
+  -- use {
+  --   'gelguy/wilder.nvim',
+  --   config = function()
+  --     -- config goes here
+  --   end,
+  -- }
+  
+  -- use {
+  --   "folke/which-key.nvim",
+  --   config = function()
+  --     require("which-key").setup {
+  --       -- your configuration comes here
+  --       -- or leave it empty to use the default settings
+  --       -- refer to the configuration section below
+  --     }
+  --   end
+  -- }
+
+  -- use({
+  -- 	"Pocco81/true-zen.nvim",
+  -- 	config = function()
+  -- 		 require("true-zen").setup {
+  -- 			-- your config goes here
+  -- 			-- or just leave it empty :)
+  -- 		 }
+  -- 	end,
+  -- })
+  
+  -- use {'junegunn/goyo.vim'}
+
+  -- auto add pair
+  use {'Raimondi/delimitMate'}
+
 end)

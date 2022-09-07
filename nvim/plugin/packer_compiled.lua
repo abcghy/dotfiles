@@ -74,6 +74,11 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  delimitMate = {
+    loaded = true,
+    path = "/Users/sakura/.local/share/nvim/site/pack/packer/start/delimitMate",
+    url = "https://github.com/Raimondi/delimitMate"
+  },
   ["gitsigns.nvim"] = {
     loaded = true,
     path = "/Users/sakura/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
