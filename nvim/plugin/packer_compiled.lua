@@ -84,6 +84,11 @@ _G.packer_plugins = {
     path = "/Users/sakura/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
     url = "https://github.com/lewis6991/gitsigns.nvim"
   },
+  ["kotlin-vim"] = {
+    loaded = true,
+    path = "/Users/sakura/.local/share/nvim/site/pack/packer/start/kotlin-vim",
+    url = "https://github.com/udalov/kotlin-vim"
+  },
   ["lazygit.nvim"] = {
     loaded = true,
     path = "/Users/sakura/.local/share/nvim/site/pack/packer/start/lazygit.nvim",
@@ -114,6 +119,11 @@ _G.packer_plugins = {
     path = "/Users/sakura/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
   },
+  ["papercolor-theme"] = {
+    loaded = true,
+    path = "/Users/sakura/.local/share/nvim/site/pack/packer/start/papercolor-theme",
+    url = "https://github.com/NLKNguyen/papercolor-theme"
+  },
   ["plenary.nvim"] = {
     loaded = true,
     path = "/Users/sakura/.local/share/nvim/site/pack/packer/start/plenary.nvim",
@@ -138,6 +148,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/sakura/.local/share/nvim/site/pack/packer/start/vim-one",
     url = "https://github.com/rakr/vim-one"
+  },
+  ["vim-sandwich"] = {
+    loaded = true,
+    path = "/Users/sakura/.local/share/nvim/site/pack/packer/start/vim-sandwich",
+    url = "https://github.com/machakann/vim-sandwich"
   }
 }
 

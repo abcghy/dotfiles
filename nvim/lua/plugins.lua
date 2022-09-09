@@ -41,6 +41,8 @@ return require('packer').startup(function()
 
   use {'rakr/vim-one'}
 
+  use {'NLKNguyen/papercolor-theme'}
+
   use {
     'lewis6991/gitsigns.nvim',
     -- tag = 'release' -- To use the latest release (do not use this if you run Neovim nightly or dev builds!)
@@ -78,5 +80,9 @@ return require('packer').startup(function()
 
   -- auto add pair
   use {'Raimondi/delimitMate'}
+
+  use {'machakann/vim-sandwich'}
+
+  use {'udalov/kotlin-vim'}
 
 end)

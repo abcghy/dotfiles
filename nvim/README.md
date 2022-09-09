@@ -24,3 +24,16 @@ for search
 # git gutter
 ## shortcut
 - `<Leader>gbl` toggle current line blame
+
+# delimitMate
+auto add pair for your code, such as `{}` or `''`
+
+# pair management
+https://github.com/machakann/vim-sandwich
+# shortcut
+add () around word
+- `saiw(`
+remove around pair `(hello)`
+- `sdb` or `sd(` (`sdb` auto detect pair)
+replace
+- `srb[`

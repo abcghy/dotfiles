@@ -10,7 +10,8 @@ lua << END
 require('lualine').setup {
     options = {
         -- https://github.com/nvim-lualine/lualine.nvim/blob/master/THEMES.md
-        theme = 'onedark'
+        -- theme = 'onedark'
+        theme = 'onelight'
     }
 }
 
@@ -51,6 +52,12 @@ require('gitsigns').setup({
         map('n', '<leader>gbl', gs.toggle_current_line_blame)
     end
 })
+
+require('telescope').setup {
+    defaults = {
+        path_display = {'truncate'}
+    },
+}
 END
 
 :set tabstop=4
@@ -74,6 +81,8 @@ nnoremap tf :NvimTreeFocus<cr>
 
 nnoremap J 10j
 nnoremap K 10k
+vnoremap J 10j
+vnoremap K 10k
 
 """ telescope
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
@@ -87,9 +96,14 @@ nnoremap <silent> <leader>gg :LazyGit<CR>
 """ wilder.nvim
 " call wilder#setup({'modes': [':', '/', '?']})
 
-colorscheme one
-" set background=light
-set background=dark
-set termguicolors
+""" hlslens
+nnoremap <leader>l <cmd>noh<cr>
+
+set t_Co=256   " This is may or may not needed.
+
+set background=light
+colorscheme PaperColor
+
+" set termguicolors
 " hi Normal guibg=NONE ctermbg=NONE
 
