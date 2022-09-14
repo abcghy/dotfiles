@@ -10,9 +10,28 @@ lua << END
 require('lualine').setup {
     options = {
         -- https://github.com/nvim-lualine/lualine.nvim/blob/master/THEMES.md
-        -- theme = 'onedark'
-        theme = 'onelight'
+        theme = 'onedark',
+        -- theme = 'onelight'
+        disabled_filetypes = {
+            statusline = {'NvimTree'},
+        },
+    },
+    sections = {
+        lualine_c = {
+            {
+                'filename',
+                path = 1
+            }
+        }
     }
+    -- inactive_sections = {
+    --     lualine_c = {
+    --         {
+    --             'filename',
+    --             path = 1
+    --         }
+    --     }
+    -- }
 }
 
 require('nvim-tree').setup({
@@ -34,6 +53,7 @@ require('nvim-tree').setup({
             show = {
                 folder = false,
             },
+            padding = " "
         },
         highlight_opened_files = "all",
     },
@@ -101,7 +121,7 @@ nnoremap <leader>l <cmd>noh<cr>
 
 set t_Co=256   " This is may or may not needed.
 
-set background=light
+set background=dark
 colorscheme PaperColor
 
 " set termguicolors
