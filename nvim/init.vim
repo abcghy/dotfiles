@@ -11,7 +11,7 @@ require('lualine').setup {
     options = {
         -- https://github.com/nvim-lualine/lualine.nvim/blob/master/THEMES.md
         theme = 'onedark',
-        -- theme = 'onelight'
+        -- theme = 'onelight',
         disabled_filetypes = {
             statusline = {'NvimTree'},
         },
@@ -77,6 +77,14 @@ require('telescope').setup {
     defaults = {
         path_display = {'truncate'}
     },
+    pickers = {
+        find_files = {
+            theme = "dropdown",
+        },
+        live_grep = {
+            theme = "dropdown",
+        },
+    }
 }
 END
 
@@ -88,7 +96,7 @@ set clipboard+=unnamedplus
 
 set nu rnu
 set cursorline
-set cursorcolumn
+" set cursorcolumn
 
 nnoremap <SPACE> <Nop>
 let mapleader = " " " map leader to Space
@@ -117,6 +125,7 @@ nnoremap <silent> <leader>gg :LazyGit<CR>
 " call wilder#setup({'modes': [':', '/', '?']})
 
 """ hlslens
+" remove highlight
 nnoremap <leader>l <cmd>noh<cr>
 
 set t_Co=256   " This is may or may not needed.
