@@ -39,6 +39,7 @@ visual-studio-code
 microsoft-outlook
 todoist
 postman
+xcodes
 
 [mas]
 magnet
