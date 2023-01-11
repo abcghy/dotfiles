@@ -9,3 +9,6 @@
     ~/.zimrc: zsh/.zimrc
     ~/.config/nvim: nvim
     ~/.config/kitty/kitty.conf: kitty.conf
+    ~/Library/Rime:
+      glob: true
+      path: Rime/*

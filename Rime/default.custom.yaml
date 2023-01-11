@@ -1,0 +1,12 @@
+patch:
+  "menu/page_size": 7
+
+  # using [ and ] to navigate through menu
+  "key_binder/bindings":
+    - { when: paging, accept: bracketleft, send: Page_Up }
+    - { when: has_menu, accept: bracketright, send: Page_Down }
+
+  # delete Shift switch EN/CN function
+  "ascii_composer/switch_key":
+    Shift_L: noop
+    Shift_R: noop
