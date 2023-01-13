@@ -4,12 +4,24 @@
 
 - link:
     ~/.ideavimrc: .ideavimrc
-    ~/Library/Application Support/lazygit/config.yml: lazygit.yml
+
+    ~/Library/Application Support/lazygit/config.yml:
+      path: lazygit.yml
+      if: '[ "$(uname -s)" = "Darwin" ]'
+    ~/.config/lazygit/config.yml:
+      path: lazygit.yml
+      if: '[ "$(uname -s)" = "Linux" ]'
+
     ~/.zshrc: zsh/.zshrc
     ~/.zimrc: zsh/.zimrc
     ~/.config/nvim: nvim
     ~/.config/kitty/kitty.conf: kitty.conf
+
     ~/Library/Rime:
       glob: true
       path: Rime/*
       if: '[ "$(uname -s)" = "Darwin" ]'
+    ~/.local/share/fcitx5/rime:
+      glob: true
+      path: Rime/*
+      if: '[ "$(uname -s)" = "Linux" ]'
