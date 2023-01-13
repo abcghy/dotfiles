@@ -12,3 +12,4 @@
     ~/Library/Rime:
       glob: true
       path: Rime/*
+      if: '[ "$(uname -s)" = "Darwin" ]'
