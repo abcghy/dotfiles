@@ -26,6 +26,9 @@
       path: Rime/*
       if: '[ "$(uname -s)" = "Linux" ]'
 
+    ~/.config/mpv:
+      path: mpv
+
     # Linux Only
     ~/.config/rofi:
       path: linux/rofi
