@@ -28,6 +28,8 @@
 
     ~/.config/mpv:
       path: mpv
+    ~/.config/doom:
+      path: doom
 
     # Linux Only
     ~/.config/rofi:
