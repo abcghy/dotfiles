@@ -155,3 +155,4 @@ export PATH="$HOME/Library/Android/sdk/platform-tools:$PATH"
 export GPG_TTY=$(tty)
 
 export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
+export PATH=$HOME/.config/emacs/bin:$PATH
