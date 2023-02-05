@@ -35,3 +35,10 @@
     ~/.config/rofi:
       path: linux/rofi
       if: '[ "$(uname -s)" = "Linux" ]'
+    ~/.xmonad/xmonad.hs:
+      path: linux/xmonad/xmonad.hs
+      if: '[ "$(uname -s)" = "Linux" ]'
+    ~/.xmobarrc:
+      path: linux/xmonad/.xmobarrc
+      if: '[ "$(uname -s)" = "Linux" ]'
+
