@@ -90,3 +90,6 @@ sources = cmp.config.sources({
 --     { name = 'cmdline' }
 --   })
 -- })
+--
+
+require('hlslens').setup {}

@@ -71,3 +71,5 @@ imap jj <Esc>
 """ 复制和粘贴都剪切板里过
 set clipboard=unnamedplus
 
+
+:map <LEADER>gb <Action>(Annotate)
