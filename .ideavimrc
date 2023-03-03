@@ -73,3 +73,5 @@ set clipboard=unnamedplus
 
 
 :map <LEADER>gb <Action>(Annotate)
+:map tf <Action>(ActivateProjectToolWindow)
+""" HideActiveWindow

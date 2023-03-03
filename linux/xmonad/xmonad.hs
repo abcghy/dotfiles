@@ -1,6 +1,7 @@
 import XMonad
 import XMonad.Layout.Gaps
 import XMonad.Layout.Spacing
+import XMonad.Layout.NoBorders
 import XMonad.Hooks.SetWMName
 import XMonad.Util.EZConfig
 
@@ -10,6 +11,8 @@ import XMonad.Hooks.StatusBar.PP
 import XMonad.Hooks.ManageHelpers
 
 import XMonad.Util.Loggers
+
+import qualified XMonad.Util.Hacks as Hacks
 
 
 myXmobarPP :: PP
@@ -51,19 +54,27 @@ main = xmonad
         toggleStrutsKey :: XConfig Layout -> (KeyMask, KeySym)
         toggleStrutsKey XConfig{ modMask = m } = (m, xK_b)
 
-myLayoutHook = Tall 1 (3/100) (1/2) ||| Full
+myLayoutHook = Tall 1 (3/100) (1/2) ||| noBorders Full
 
 myConfig = def
     { terminal = "kitty"
     , focusFollowsMouse = False -- disable mouse auto focus
     -- , layoutHook = gaps [(U,72), (R,24)] $ Tall 1 (3/100) (1/2) ||| Full
     , startupHook = setWMName "LG3D"
-    , layoutHook = spacingWithEdge 10 $ myLayoutHook
+    , layoutHook = spacingWithEdge 10 
+    -- $ gaps [(U, 36)] 
+    $ myLayoutHook
+    -- fix chromium based app full screen bizzard behavior
+    , handleEventHook = handleEventHook def <> Hacks.windowedFullscreenFixEventHook
     }
+    `removeKeysP`
+    [ ("M-<Space>")
+    , ("M-<Return>")
+    , ("M-p")
+    ]
     `additionalKeysP`
-    [ ("M-p", spawn "rofi -show")
+    [ ("M-<Space>", spawn "rofi -show")
+    , ("M-n", sendMessage NextLayout)
     -- , ("M-space", spawn "rofi -show")
     ]
-    -- `additionalKeys`
-    -- [ ((mod1Mask, xK_p), spawn "rofi -show")
-    -- ]
+
