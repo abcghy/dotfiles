@@ -85,8 +85,12 @@ return require('packer').startup(function()
 
   use {'udalov/kotlin-vim'}
 
-  use {'neovim/nvim-lspconfig'}
-
+  use {
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig",
+    'neovim/nvim-lspconfig',
+  }
+  
   -- LSP autocomplete
   use {'hrsh7th/nvim-cmp'}
   use {'hrsh7th/cmp-nvim-lsp'}
@@ -95,5 +99,7 @@ return require('packer').startup(function()
   use {'L3MON4D3/LuaSnip'}
   use {'saadparwaiz1/cmp_luasnip'}
   use {'szw/vim-maximizer'}
+
+  use { "catppuccin/nvim", as = "catppuccin" }
 
 end)

@@ -1,28 +1,35 @@
+require("mason").setup()
+require("mason-lspconfig").setup()
+
 -- Native LSP Setup
 -- Get Language Server
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
+servers = {'ccls', 'pyright', 'tsserver',}
+
 -- cpp
 -- get ccls
-require'lspconfig'.ccls.setup {
-    capabilities = capabilities,
-    on_attach = function()
-        --            mode, key, function reference, only for this buffer
-        vim.keymap.set("n", "Q", vim.lsp.buf.hover, {buffer = 0})
-        vim.keymap.set("n", "gd", vim.lsp.buf.definition, {buffer = 0})
-        vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, {buffer = 0})
-        vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {buffer = 0})
-        vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, {buffer = 0})
+for i, v in pairs(servers) do
+    require('lspconfig')[v].setup {
+        capabilities = capabilities,
+        on_attach = function()
+            --            mode, key, function reference, only for this buffer
+            vim.keymap.set("n", "Q", vim.lsp.buf.hover, {buffer = 0})
+            vim.keymap.set("n", "gd", vim.lsp.buf.definition, {buffer = 0})
+            vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, {buffer = 0})
+            vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {buffer = 0})
+            vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, {buffer = 0})
 
-        -- find next error in current file
-        vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, {buffer = 0})
-        -- find previous
-        vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, {buffer = 0})
-        ---- telescope diagnostics
-        vim.keymap.set("n", "<leader>gd", "<cmd>Telescope diagnostics<cr>", {buffer = 0})
-    end
-}
+            -- find next error in current file
+            vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, {buffer = 0})
+            -- find previous
+            vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, {buffer = 0})
+            ---- telescope diagnostics
+            vim.keymap.set("n", "<leader>gd", "<cmd>Telescope diagnostics<cr>", {buffer = 0})
+        end
+    }
+end
 
 -- set completeopt=menu,menuone,noselect
 vim.opt.completeopt={"menu", "menuone", "noselect"}
@@ -91,3 +98,4 @@ sources = cmp.config.sources({
 --   })
 -- })
 require('hlslens').setup {}
+

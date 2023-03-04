@@ -11,8 +11,8 @@ lua << END
 require('lualine').setup {
     options = {
         -- https://github.com/nvim-lualine/lualine.nvim/blob/master/THEMES.md
-        theme = 'onedark',
-        -- theme = 'onelight',
+        -- theme = 'onedark',
+        theme = 'onelight',
         disabled_filetypes = {
             statusline = {'NvimTree'},
         },
@@ -131,8 +131,9 @@ nnoremap <leader>l <cmd>noh<cr>
 
 set t_Co=256   " This is may or may not needed.
 
-set background=dark
-colorscheme PaperColor
+" set background=light
+" colorscheme PaperColor
+colorscheme catppuccin "catppuccin-latte  catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
 
 " set termguicolors
 " hi Normal guibg=NONE ctermbg=NONE
