@@ -1,4 +1,6 @@
 (setq inhibit-startup-screen t)
+(setq IS-MAC (eq system-type 'darwin))
+(setq IS-LINUX (eq system-type 'gnu/linux))
 
 ;; Set up package.el to work with MELPA
 (require 'package)
@@ -32,11 +34,18 @@
 (require 'smartparens-config)
 (add-hook 'cider-repl-mode-hook #'smartparens-mode)
 (add-hook 'clojure-mode-hook #'smartparens-strict-mode)
+(add-hook 'emacs-lisp-mode-hook #'smartparens-mode)
 
+(ensure-install 'which-key)
+(require 'which-key)
+(setq which-key-idle-delay 500)
+(which-key-mode)
 
 ;; (set-frame-font "Sarasa Mono SC Nerd 18" nil t)
 
-(set-face-attribute 'default nil :font (font-spec :family "Sarasa Mono SC Nerd" :size 18))
+(setq font-size
+      (if IS-MAC 18 36))
+(set-face-attribute 'default nil :font (font-spec :family "Sarasa Mono SC Nerd" :size font-size))
 
 (tool-bar-mode -1)
 
