@@ -16,6 +16,7 @@
     ~/.zimrc: zsh/.zimrc
     ~/.config/nvim: nvim
     ~/.config/kitty/kitty.conf: kitty.conf
+    ~/.emacs.d/init.el: init.el
 
     ~/Library/Rime:
       glob: true

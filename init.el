@@ -9,7 +9,7 @@
 (package-initialize)
 
 ;; only the first time or later if you want to update plugin, you need to refresh contents
-;;(package-refresh-contents)
+;; (package-refresh-contents)
 
 (defun ensure-install (package-name)
   (unless (package-installed-p package-name)
@@ -38,8 +38,11 @@
 
 (ensure-install 'which-key)
 (require 'which-key)
-(setq which-key-idle-delay 500)
+(setq which-key-idle-delay 0.5)
 (which-key-mode)
+
+(ensure-install 'doom-modeline)
+(add-hook 'after-init-hook #'doom-modeline-mode)
 
 ;; (set-frame-font "Sarasa Mono SC Nerd 18" nil t)
 
