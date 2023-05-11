@@ -2,47 +2,49 @@
 (setq IS-MAC (eq system-type 'darwin))
 (setq IS-LINUX (eq system-type 'gnu/linux))
 
-;; Set up package.el to work with MELPA
-(require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/"))
-(package-initialize)
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 6))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
 
-;; only the first time or later if you want to update plugin, you need to refresh contents
-;; (package-refresh-contents)
+(straight-use-package 'use-package)
 
-(defun ensure-install (package-name)
-  (unless (package-installed-p package-name)
-    (package-install package-name)))
+(use-package straight
+  :custom
+  (straight-use-package-by-default t))
 
-;; Download Evil
-;; (unless (package-installed-p 'evil)
-;;   (package-install 'evil))
-(ensure-install 'evil)
+(use-package evil
+  :config
+  (evil-mode))
 
-;; Enable Evil
-(require 'evil)
-(evil-mode 1)
+(use-package cider
+  :config
+  (add-hook 'clojure-mode-hook #'cider-mode)
+  (setq tab-always-indent 'complete))
 
-(ensure-install 'cider)
-(add-hook 'clojure-mode-hook #'cider-mode)
-;; enable cider tab code completion
-(setq tab-always-indent 'complete)
+(use-package smartparens
+  :config
+  (add-hook 'cider-repl-mode-hook #'smartparens-mode)
+  (add-hook 'clojure-mode-hook #'smartparens-strict-mode)
+  (add-hook 'emacs-lisp-mode-hook #'smartparens-mode))
 
-(ensure-install 'smartparens)
+(use-package which-key
+  :init
+  (setq which-key-idle-delay 0.5)
+  :config
+  (which-key-mode))
 
-(require 'smartparens-config)
-(add-hook 'cider-repl-mode-hook #'smartparens-mode)
-(add-hook 'clojure-mode-hook #'smartparens-strict-mode)
-(add-hook 'emacs-lisp-mode-hook #'smartparens-mode)
-
-(ensure-install 'which-key)
-(require 'which-key)
-(setq which-key-idle-delay 0.5)
-(which-key-mode)
-
-(ensure-install 'doom-modeline)
-(add-hook 'after-init-hook #'doom-modeline-mode)
+(use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1))
 
 ;; (set-frame-font "Sarasa Mono SC Nerd 18" nil t)
 
@@ -52,16 +54,5 @@
 
 (tool-bar-mode -1)
 
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages '(evil)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+(global-display-line-numbers-mode)
+(setq display-line-numbers-type 'relative)

@@ -17,6 +17,7 @@
     ~/.config/nvim: nvim
     ~/.config/kitty/kitty.conf: kitty.conf
     ~/.emacs.d/init.el: init.el
+    ~/.emacs.d/early-init.el: early-init.el
 
     ~/Library/Rime:
       glob: true
