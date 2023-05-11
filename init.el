@@ -34,7 +34,8 @@
   :config
   (add-hook 'cider-repl-mode-hook #'smartparens-mode)
   (add-hook 'clojure-mode-hook #'smartparens-strict-mode)
-  (add-hook 'emacs-lisp-mode-hook #'smartparens-mode))
+  (add-hook 'emacs-lisp-mode-hook #'smartparens-mode)
+  (add-hook 'org-mode-hook #'smartparens-mode))
 
 (use-package which-key
   :init
@@ -45,6 +46,26 @@
 (use-package doom-modeline
   :ensure t
   :init (doom-modeline-mode 1))
+
+(use-package doom-themes
+  :ensure t
+  :config
+  (setq doom-themes-enable-bold t
+	doom-themes-enable-italic t)
+  (load-theme 'doom-one-light t)
+  (doom-themes-visual-bell-config))
+
+(use-package dashboard
+  :ensure t
+  :config
+  (dashboard-setup-startup-hook))
+
+(use-package org-bullets
+  :config
+  (add-hook 'org-mode-hook #'org-bullets-mode))
+
+(add-hook 'org-mode-hook 'visual-line-mode)
+(add-hook 'org-mode-hook 'org-indent-mode)
 
 ;; (set-frame-font "Sarasa Mono SC Nerd 18" nil t)
 
