@@ -156,3 +156,4 @@ export GPG_TTY=$(tty)
 
 export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
 export PATH=$HOME/.config/emacs/bin:$PATH
+export TERM=xterm-256color
