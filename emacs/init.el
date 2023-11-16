@@ -96,7 +96,7 @@
 (setq font-size
       (if IS-MAC 18 36))
 (setq font-name
-      (if IS-MAC "Sarasa Mono SC Nerd" "Sarasa Term SC Nerd"))
+      (if IS-MAC "Sarasa Mono SC Nerd Font" "Sarasa Term SC Nerd"))
 (set-face-attribute 'default nil :font (font-spec :family font-name :size font-size))
 
 (tool-bar-mode -1) ;; disable mac menu bar
