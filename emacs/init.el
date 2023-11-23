@@ -38,7 +38,13 @@
   (add-hook 'cider-repl-mode-hook #'smartparens-mode)
   (add-hook 'clojure-mode-hook #'smartparens-strict-mode)
   (add-hook 'emacs-lisp-mode-hook #'smartparens-mode)
-  (add-hook 'org-mode-hook #'smartparens-mode))
+  (add-hook 'org-mode-hook #'smartparens-mode)
+  (sp-with-modes 'org-mode
+    (sp-local-pair "~" "~"))
+  (sp-with-modes 'emacs-lisp-mode
+    ;; https://github.com/Fuco1/smartparens/issues/1043#issuecomment-705519061
+    ;; should use nil not :rem
+    (sp-local-pair "'" nil :actions nil)))
 
 (use-package which-key
   :init
@@ -104,3 +110,20 @@
 
 (global-display-line-numbers-mode)
 (setq display-line-numbers-type 'relative)
+
+(evil-set-leader 'normal (kbd "<SPC>"))
+
+(evil-define-key 'normal 'global
+  (kbd "<leader>ff") 'helm-find-files
+  (kbd "<leader>wj") 'evil-window-down
+  (kbd "<leader>wk") 'evil-window-up
+  (kbd "<leader>wh") 'evil-window-left
+  (kbd "<leader>wl") 'evil-window-right
+  (kbd "<leader>wc") 'evil-window-delete
+  (kbd "<leader>bn") 'next-buffer
+  (kbd "<leader>bp") 'previous-buffer
+  (kbd "<leader>bb") 'helm-buffers-list
+  (kbd "<leader>oc") 'org-capture
+  (kbd "<leader>ogn") 'org-go-to-note
+  (kbd "<leader>hf") 'describe-function
+  (kbd "<leader>hv") 'describe-variable)
