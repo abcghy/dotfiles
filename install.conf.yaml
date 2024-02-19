@@ -14,6 +14,7 @@
 
     ~/.zshrc: zsh/.zshrc
     ~/.zimrc: zsh/.zimrc
+    ~/.gitconfig: gitconfig/.gitconfig
     ~/.config/nvim: nvim
     ~/.config/kitty:
       path: kitty
