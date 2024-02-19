@@ -1,0 +1,10 @@
+# This is Git's per-user configuration file.
+[user]
+	name = Harry Gao
+	email = harry@planetart.com
+[push]
+	default = current
+[help]
+	autocorrect = prompt
+[diff]
+	algorithm = histogram
