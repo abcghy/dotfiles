@@ -13,8 +13,12 @@ local config = {
     use_fancy_tab_bar = true,
 
     -- font
-    font = wezterm.font('Sarasa Term SC'),
-    font_size = 18.0,
+    -- font = wezterm.font('Sarasa Term SC'),
+    font = wezterm.font {
+        family = 'Cascadia Code',
+        weight = 'Light'
+    },
+    font_size = 16.0,
 
     window_frame = {
         font_size = 16.0,

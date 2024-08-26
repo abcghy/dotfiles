@@ -18,6 +18,8 @@
     ~/.config/nvim: nvim
     ~/.config/kitty:
       path: kitty
+    ~/.config/wezterm:
+      path: wezterm
     ~/.emacs.d:
       path: emacs
 
