@@ -1,39 +1,34 @@
-# use packer as plugin manager
+# AstroNvim Template
 
-# vim commentary
-## shortcut
-- `gcc` comment current line
-- select and `gc` comment the selected text
+**NOTE:** This is for AstroNvim v4+
 
-# nvim tree
-## shortcut
-- `tt` toggle tree
-- `tf` tree focus
+A template for getting started with [AstroNvim](https://github.com/AstroNvim/AstroNvim)
 
-# telescope
-## shortcut
-- `<space>ff` search files in directory
+## 🛠️ Installation
 
-# lazygit
-## shortcut
-- `<space>gg` show lazygit in vim
+#### Make a backup of your current nvim and shared folder
 
-# nvim-hlslens
-for search
+```shell
+mv ~/.config/nvim ~/.config/nvim.bak
+mv ~/.local/share/nvim ~/.local/share/nvim.bak
+mv ~/.local/state/nvim ~/.local/state/nvim.bak
+mv ~/.cache/nvim ~/.cache/nvim.bak
+```
 
-# git gutter
-## shortcut
-- `<Leader>gbl` toggle current line blame
+#### Create a new user repository from this template
 
-# delimitMate
-auto add pair for your code, such as `{}` or `''`
+Press the "Use this template" button above to create a new repository to store your user configuration.
 
-# pair management
-https://github.com/machakann/vim-sandwich
-# shortcut
-add () around word
-- `saiw(`
-remove around pair `(hello)`
-- `sdb` or `sd(` (`sdb` auto detect pair)
-replace
-- `srb[`
+You can also just clone this repository directly if you do not want to track your user configuration in GitHub.
+
+#### Clone the repository
+
+```shell
+git clone https://github.com/<your_user>/<your_repository> ~/.config/nvim
+```
+
+#### Start Neovim
+
+```shell
+nvim
+```
