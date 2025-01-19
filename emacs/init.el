@@ -100,7 +100,7 @@
 ;; (set-frame-font "Sarasa Mono SC Nerd 18" nil t)
 
 (setq font-size
-      (if IS-MAC 18 36))
+      (if IS-MAC 18 18))
 (setq font-name
       (if IS-MAC "Sarasa Mono SC Nerd Font" "Sarasa Term SC Nerd"))
 (set-face-attribute 'default nil :font (font-spec :family font-name :size font-size))

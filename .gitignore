@@ -4,3 +4,4 @@ emacs/auto-save-list
 emacs/straight
 emacs/recentf
 emacs/bookmarks*
+eln-cache/
