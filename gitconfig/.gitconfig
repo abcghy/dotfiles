@@ -1,7 +1,7 @@
 # This is Git's per-user configuration file.
 [user]
 	name = Harry Gao
-	email = harry@planetart.com
+	email = beatbox_gao@hotmail.com
 [push]
 	default = current
 [help]
