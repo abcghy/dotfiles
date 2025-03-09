@@ -2,10 +2,14 @@
 (setq IS-MAC (eq system-type 'darwin))
 (setq IS-LINUX (eq system-type 'gnu/linux))
 
+(setq straight-base-dir "~/.my-emacs.d/")
 (defvar bootstrap-version)
 (let ((bootstrap-file
-       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-      (bootstrap-version 6))
+       (expand-file-name
+        "straight/repos/straight.el/bootstrap.el"
+        (or (bound-and-true-p straight-base-dir)
+            user-emacs-directory)))
+      (bootstrap-version 7))
   (unless (file-exists-p bootstrap-file)
     (with-current-buffer
         (url-retrieve-synchronously
@@ -15,7 +19,10 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
+(straight-use-package 'org)
 (straight-use-package 'use-package)
+
+(setq evil-undo-system 'undo-redo)
 
 (use-package straight
   :custom
@@ -27,24 +34,24 @@
   :config
   (evil-mode))
 
-(use-package cider
-  :config
-  (add-hook 'clojure-mode-hook #'cider-mode)
-  ;;(setq tab-always-indent 'complete)
-  )
+;; (use-package cider
+;;   :config
+;;   (add-hook 'clojure-mode-hook #'cider-mode)
+;;   ;;(setq tab-always-indent 'complete)
+;;   )
 
-(use-package smartparens
-  :config
-  (add-hook 'cider-repl-mode-hook #'smartparens-mode)
-  (add-hook 'clojure-mode-hook #'smartparens-strict-mode)
-  (add-hook 'emacs-lisp-mode-hook #'smartparens-mode)
-  (add-hook 'org-mode-hook #'smartparens-mode)
-  (sp-with-modes 'org-mode
-    (sp-local-pair "~" "~"))
-  (sp-with-modes 'emacs-lisp-mode
-    ;; https://github.com/Fuco1/smartparens/issues/1043#issuecomment-705519061
-    ;; should use nil not :rem
-    (sp-local-pair "'" nil :actions nil)))
+;; (use-package smartparens
+;;   :config
+;;   (add-hook 'cider-repl-mode-hook #'smartparens-mode)
+;;   (add-hook 'clojure-mode-hook #'smartparens-strict-mode)
+;;   (add-hook 'emacs-lisp-mode-hook #'smartparens-mode)
+;;   (add-hook 'org-mode-hook #'smartparens-mode)
+;;   (sp-with-modes 'org-mode
+;;     (sp-local-pair "~" "~"))
+;;   (sp-with-modes 'emacs-lisp-mode
+;;     ;; https://github.com/Fuco1/smartparens/issues/1043#issuecomment-705519061
+;;     ;; should use nil not :rem
+;;     (sp-local-pair "'" nil :actions nil)))
 
 (use-package which-key
   :init
@@ -69,16 +76,27 @@
   :config
   (dashboard-setup-startup-hook))
 
-(use-package helm
-  :bind
-  (("M-x" . helm-M-x)
-   ("C-x C-f" . helm-find-files)))
+;; (use-package helm
+;;   :bind
+;;   (("M-x" . helm-M-x)
+;;    ("C-x C-f" . helm-find-files)))
 
-(use-package bing-dict
-  :bind
-  (("C-c d" . bing-dict-brief))
-  :config
-  (setq bing-dict-add-to-kill-ring t))
+(use-package vertico
+  :init
+  (vertico-mode)
+  (setq completion-ignore-case t))
+
+(use-package orderless
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-defaults nil)
+  (completion-category-overrides '((file (styles partial-completion)))))
+
+;; (use-package bing-dict
+;;   :bind
+;;   (("C-c d" . bing-dict-brief))
+;;   :config
+;;   (setq bing-dict-add-to-kill-ring t))
 
 (use-package org-bullets
   :config
@@ -86,9 +104,30 @@
 
 (add-hook 'org-mode-hook 'visual-line-mode)
 (add-hook 'org-mode-hook 'org-indent-mode)
-(setq org-directory "~/Dropbox/org")
+(setq org-directory "~/Sync/org")
+(setq org-roam-directory "~/Sync/roam")
 (setq note-file (concat org-directory "/notes.org"))
 (setq org-default-notes-file note-file)
+(setq org-refile-use-outline-path 'file)
+(setq org-return-follows-link t)
+
+(use-package org-roam
+  :ensure t
+  :custom
+  (org-roam-directory (file-truename org-roam-directory))
+  :bind (("C-c n l" . org-roam-buffer-toggle)
+         ("C-c n f" . org-roam-node-find)
+         ("C-c n g" . org-roam-graph)
+         ("C-c n i" . org-roam-node-insert)
+         ("C-c n c" . org-roam-capture)
+         ;; Dailies
+         ("C-c n j" . org-roam-dailies-capture-today))
+  :config
+  ;; If you're using a vertical completion framework, you might want a more informative completion interface
+  ;; (setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
+  (org-roam-db-autosync-mode)
+  ;; If using org-roam-protocol
+  (require 'org-roam-protocol))
 
 (defun org-go-to-note()
   (interactive)
@@ -102,7 +141,7 @@
 (setq font-size
       (if IS-MAC 18 18))
 (setq font-name
-      (if IS-MAC "Sarasa Mono SC Nerd Font" "Sarasa Term SC Nerd"))
+      (if IS-MAC "Sarasa Term SC Nerd" "Sarasa Term SC Nerd"))
 (set-face-attribute 'default nil :font (font-spec :family font-name :size font-size))
 
 (tool-bar-mode -1) ;; disable mac menu bar
