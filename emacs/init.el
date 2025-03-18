@@ -28,11 +28,18 @@
   :custom
   (straight-use-package-by-default t))
 
-(use-package evil
-  :init
-  (setq evil-want-C-i-jump nil)
-  :config
-  (evil-mode))
+(defconst user-init-dir
+  (cond ((boundp 'user-emacs-directory)
+	 user-emacs-directory)
+	((boundp 'user-init-directory)
+	 user-init-directory)
+	(t "~/.emacs.d/")))
+
+(defun load-user-file (file)
+  (interactive "f")
+  "Load a file in current user's configuration directory"
+  (load-file (expand-file-name file user-init-dir)))
+
 
 ;; (use-package cider
 ;;   :config
@@ -40,129 +47,18 @@
 ;;   ;;(setq tab-always-indent 'complete)
 ;;   )
 
-;; (use-package smartparens
-;;   :config
-;;   (add-hook 'cider-repl-mode-hook #'smartparens-mode)
-;;   (add-hook 'clojure-mode-hook #'smartparens-strict-mode)
-;;   (add-hook 'emacs-lisp-mode-hook #'smartparens-mode)
-;;   (add-hook 'org-mode-hook #'smartparens-mode)
-;;   (sp-with-modes 'org-mode
-;;     (sp-local-pair "~" "~"))
-;;   (sp-with-modes 'emacs-lisp-mode
-;;     ;; https://github.com/Fuco1/smartparens/issues/1043#issuecomment-705519061
-;;     ;; should use nil not :rem
-;;     (sp-local-pair "'" nil :actions nil)))
-
-(use-package which-key
-  :init
-  (setq which-key-idle-delay 0.5)
-  :config
-  (which-key-mode))
-
-(use-package doom-modeline
-  :ensure t
-  :init (doom-modeline-mode 1))
-
-(use-package doom-themes
-  :ensure t
-  :config
-  (setq doom-themes-enable-bold t
-	doom-themes-enable-italic t)
-  (load-theme 'doom-one-light t)
-  (doom-themes-visual-bell-config))
-
-(use-package dashboard
-  :ensure t
-  :config
-  (dashboard-setup-startup-hook))
-
-;; (use-package helm
-;;   :bind
-;;   (("M-x" . helm-M-x)
-;;    ("C-x C-f" . helm-find-files)))
-
-(use-package vertico
-  :init
-  (vertico-mode)
-  (setq completion-ignore-case t))
-
-(use-package orderless
-  :custom
-  (completion-styles '(orderless basic))
-  (completion-category-defaults nil)
-  (completion-category-overrides '((file (styles partial-completion)))))
-
-;; (use-package bing-dict
-;;   :bind
-;;   (("C-c d" . bing-dict-brief))
-;;   :config
-;;   (setq bing-dict-add-to-kill-ring t))
-
-(use-package org-bullets
-  :config
-  (add-hook 'org-mode-hook #'org-bullets-mode))
-
-(add-hook 'org-mode-hook 'visual-line-mode)
-(add-hook 'org-mode-hook 'org-indent-mode)
-(setq org-directory "~/Sync/org")
-(setq org-roam-directory "~/Sync/roam")
-(setq note-file (concat org-directory "/notes.org"))
-(setq org-default-notes-file note-file)
-(setq org-refile-use-outline-path 'file)
-(setq org-return-follows-link t)
-
-(use-package org-roam
-  :ensure t
-  :custom
-  (org-roam-directory (file-truename org-roam-directory))
-  :bind (("C-c n l" . org-roam-buffer-toggle)
-         ("C-c n f" . org-roam-node-find)
-         ("C-c n g" . org-roam-graph)
-         ("C-c n i" . org-roam-node-insert)
-         ("C-c n c" . org-roam-capture)
-         ;; Dailies
-         ("C-c n j" . org-roam-dailies-capture-today))
-  :config
-  ;; If you're using a vertical completion framework, you might want a more informative completion interface
-  ;; (setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
-  (org-roam-db-autosync-mode)
-  ;; If using org-roam-protocol
-  (require 'org-roam-protocol))
-
-(defun org-go-to-note()
-  (interactive)
-  (find-file note-file))
-
-;; (ensure-install 'nano-theme)
-;; (load-theme 'nano-light)
-
-;; (set-frame-font "Sarasa Mono SC Nerd 18" nil t)
-
-(setq font-size
-      (if IS-MAC 18 18))
-(setq font-name
-      (if IS-MAC "Sarasa Term SC Nerd" "Sarasa Term SC Nerd"))
-(set-face-attribute 'default nil :font (font-spec :family font-name :size font-size))
-
-(tool-bar-mode -1) ;; disable mac menu bar
-(menu-bar-mode -1) ;; disable linux menu bar
-
-(global-display-line-numbers-mode)
-(setq display-line-numbers-type 'relative)
-
-(evil-set-leader 'normal (kbd "<SPC>"))
-
-(evil-define-key 'normal 'global
-  (kbd "<leader>ff") 'helm-find-files
-  (kbd "<leader>wj") 'evil-window-down
-  (kbd "<leader>wk") 'evil-window-up
-  (kbd "<leader>wh") 'evil-window-left
-  (kbd "<leader>wl") 'evil-window-right
-  (kbd "<leader>wc") 'evil-window-delete
-  (kbd "<leader>bn") 'next-buffer
-  (kbd "<leader>bp") 'previous-buffer
-  (kbd "<leader>bb") 'helm-buffers-list
-  (kbd "<leader>oc") 'org-capture
-  (kbd "<leader>ogn") 'org-go-to-note
-  (kbd "<leader>hf") 'describe-function
-  (kbd "<leader>hv") 'describe-variable)
+;; why not just load directory? Cuz for now, I want to see every plugin in the init.el file
+(load-user-file "evil.el")
+(load-user-file "smartparens.el")
+(load-user-file "which-key.el")
+(load-user-file "doom.el")
+(load-user-file "dashboard.el")
+(load-user-file "mini-buffer.el")
+(load-user-file "consult.el")
+(load-user-file "dict.el")
+(load-user-file "org.el")
+(load-user-file "personal.el")
+(load-user-file "keybindings.el")
+(load-user-file "treemacs.el")
+;; (load-user-file "lsp.el")
+(load-user-file "corfu.el")
