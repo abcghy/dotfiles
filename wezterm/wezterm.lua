@@ -1,7 +1,7 @@
-local wezterm = require 'wezterm'
+local wezterm = require("wezterm")
 
 local config = {
-    color_scheme = "catppuccin-mocha",
+    color_scheme = "catppuccin-latte",
 
     window_background_opacity = 0.90,
     macos_window_background_blur = 20,
@@ -14,15 +14,19 @@ local config = {
 
     -- font
     -- font = wezterm.font('Sarasa Term SC'),
-    font = wezterm.font {
-        family = 'Cascadia Code',
-        weight = 'Light'
-    },
+    font = wezterm.font_with_fallback { {
+        family = "Cascadia Code",
+        weight = "Light",
+    }, {
+        family = "Sarasa Term SC",
+        -- family = "PingFang SC",
+        weight = "Light",
+    } },
     font_size = 16.0,
 
     window_frame = {
         font_size = 16.0,
-        font = wezterm.font('FiraCode Nerd Font')
-    }
+        font = wezterm.font("FiraCode Nerd Font"),
+    },
 }
 return config
