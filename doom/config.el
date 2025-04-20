@@ -28,7 +28,24 @@
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
 ;; refresh your font settings. If Emacs still can't find your font, it likely
 ;; wasn't installed correctly. Font issues are rarely Doom issues!
-(setq doom-font (font-spec :family "Sarasa Term SC Nerd" :size 18))
+;; (setq doom-font (font-spec :family "Sarasa Term SC Nerd" :size 18 :weight 'semi-light))
+
+(setq maple-font
+      (font-spec
+       :family "Maple Mono NF CN"
+       :size 16
+       :weight 'extra-light))
+(setq cascadia-font
+     (font-spec
+      :family "Cascadia Code NF"
+      :size 16
+      :weight 'light))
+(setq sarasa-font
+      (font-spec
+       :family "Sarsasa Term SC Nerd"
+       :size 16
+       :weight 'light))
+(setq doom-font maple-font)
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -41,7 +58,7 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/Sync/org/")
+(setq org-directory "~/Sync/roam/")
 (setq org-roam-directory "~/Sync/roam/")
 (after! org
   (setq org-emphasis-alist
@@ -79,3 +96,25 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+
+;; (after! org-mode
+;;   (add-hook 'org-mode-hook
+;;             (lambda () (corfu-mode -1))))
+;; (add-hook 'org-mode-hook (lambda () (corfu-mode -1)))
+
+(map! :map (markdown-mode-map org-mode-map)
+      :n "j" #'evil-next-visual-line
+      :n "k" #'evil-previous-visual-line
+      :n "0" #'evil-beginning-of-visual-line
+      :n "$" #'evil-end-of-visual-line)
+
+;; add visual-line-mode for magit status mode, because I need to use git for writing essay
+;; and one paragraph is one line for git. It was hard to view the diff if visual-line-mode is off
+(after! magit
+  (add-hook 'magit-mode-hook #'visual-line-mode))
+
+;; set this to nil so that org mode won't feels laggy any more if user type Chinese Character
+;; side effect: english spell completion no long exist for every mode
+;; may be I can set this just in org mode though
+;; (setq ispell-alternate-dictionary nil)
+(setq text-mode-ispell-word-completion nil)
