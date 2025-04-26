@@ -14,13 +14,15 @@
 
     ~/.zshrc: zsh/.zshrc
     ~/.zimrc: zsh/.zimrc
+    ~/.tmux.conf: .tmux.conf
     ~/.gitconfig: gitconfig/.gitconfig
     ~/.config/nvim: nvim
+    ~/.config/wezterm: wezterm
     ~/.config/kitty:
       path: kitty
     ~/.config/wezterm:
       path: wezterm
-    ~/.emacs.d:
+    ~/.my-emacs.d:
       path: emacs
 
     ~/Library/Rime:
