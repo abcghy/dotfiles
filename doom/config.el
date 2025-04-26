@@ -118,3 +118,9 @@
 ;; may be I can set this just in org mode though
 ;; (setq ispell-alternate-dictionary nil)
 (setq text-mode-ispell-word-completion nil)
+
+(setq which-key-idle-delay 0.2)
+
+(after! smartparens
+  (sp-local-pair '(org-mode) "~" "~")
+  (sp-local-pair '(org-mode) "_" "_"))

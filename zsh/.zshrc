@@ -154,3 +154,5 @@ export TERM=xterm-256color
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 export PATH="/opt/homebrew/opt/rustup/bin:$PATH"
 export PATH="$HOME/.cargo/bin/:$PATH"
+
+. "$HOME/.local/bin/env"
