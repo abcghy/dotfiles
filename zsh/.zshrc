@@ -130,16 +130,14 @@ unset key
 
 # Created by newuser for 5.9
 
-if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
-  eval "$(oh-my-posh init zsh --config ~/.dotfiles/zsh/.oh-my-posh.omp.toml)"
-fi
-
 alias vim=nvim
 alias ra=ranger
 alias lg=lazygit
+alias ff=fastfetch
 
 export EDITOR=nvim
 
+export PATH=$PATH:$HOME/.local/bin
 export PATH="/usr/local/opt/node@16/bin:$PATH"
 export PATH="$HOME/Library/Android/sdk/platform-tools:$PATH"
 
@@ -156,3 +154,10 @@ export PATH="/opt/homebrew/opt/rustup/bin:$PATH"
 export PATH="$HOME/.cargo/bin/:$PATH"
 
 . "$HOME/.local/bin/env"
+
+export ELECTRON_OZONE_PLATFORM_HINT=wayland
+
+
+if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
+  eval "$(oh-my-posh init zsh --config ~/.dotfiles/zsh/.oh-my-posh.omp.toml)"
+fi
