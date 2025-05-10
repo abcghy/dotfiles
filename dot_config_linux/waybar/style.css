@@ -1,0 +1,93 @@
+@import "./catppuccin/themes/frappe.css";
+
+window#waybar {
+  /* you can also GTK3 CSS functions! */
+  /* background-color: shade(@base, 0.9); */
+  /* border: 2px solid alpha(@crust, 0.3); */
+  background-color: transparent;
+}
+
+* {
+    /* `otf-font-awesome` is required to be installed for icons */
+    font-family: FontAwesome, MapleMono NF CN;
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#wireplumber,
+#custom-media,
+#mode,
+#idle_inhibitor,
+#scratchpad{
+  color: @text;
+  background-color: @surface0;
+  padding: 0.5rem 1rem;
+  margin: 5px 0;
+  font-size: 16px;
+
+  border-radius: 99px;
+}
+
+/* #custom-music, */
+/* #tray, */
+/* #backlight, */
+/* #clock, */
+/* #battery, */
+/* #pulseaudio, */
+/* #custom-lock, */
+/* #custom-power { */
+/*   background-color: @surface0; */
+/*   padding: 0.5rem 1rem; */
+/*   margin: 5px 0; */
+/* } */
+
+#workspaces {
+  /* border-radius: 1rem; */
+  border-radius: 99px;
+  margin: 5px;
+  background-color: @surface0;
+}
+
+#workspaces button {
+  color: @lavender;
+  /* border-radius: 1rem; */
+  /* padding: 0.4rem; */
+  padding: 0;
+  border-radius: 99px;
+  font-weight: bold;
+}
+
+#workspaces button.active {
+  color: @mantle;
+  /* border-radius: 1rem; */
+  background-color: @lavender;
+}
+
+#workspaces button:hover {
+  color: @sapphire;
+  /* border-radius: 1rem; */
+}
+
+/* #tray { */
+/*     background-color: #2980b9; */
+/* } */
+/**/
+/* #tray > .passive { */
+/*     -gtk-icon-effect: dim; */
+/* } */
+/**/
+/* #tray > .needs-attention { */
+/*     -gtk-icon-effect: highlight; */
+/*     background-color: #eb4d4b; */
+/* } */
+
+#tray {
+    border-radius: 0px;
+}
