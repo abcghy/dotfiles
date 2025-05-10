@@ -1,0 +1,6 @@
+theme = catppuccin-latte
+
+font-family = "MapleMono NF CN"
+font-style = "ExtraLight"
+
+window-decoration = auto
