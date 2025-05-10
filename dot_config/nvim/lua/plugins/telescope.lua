@@ -1,0 +1,57 @@
+return {
+    -- {
+    --     'nvim-telescope/telescope.nvim',
+    --     -- tag = '0.1.8',
+    --     branch = '0.1.x',
+    --     dependencies = {
+    --         'nvim-lua/plenary.nvim',
+    --         { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make', },
+    --     },
+    --     config = function()
+    --         require('telescope').setup({
+    --             defaults = {
+    --                 layout_strategy = 'vertical',
+    --                 layout_config = {
+    --                     height = 0.95,
+    --                     mirror = true,
+    --                     prompt_position = "top",
+    --                 },
+    --                 sorting_strategy = "ascending",
+    --             },
+    --             extensions = {
+    --                 fzf = {
+    --                     fuzzy = true,
+    --                     override_generic_sorter = true,
+    --                     override_file_sorter = true,
+    --                 }
+    --             }
+    --             -- pickers = {
+    --             --     find_files = {
+    --             --         theme = "dropdown",
+    --             --         -- theme = "ivy",
+    --             --     },
+    --             -- },
+    --         })
+    --
+    --         require('telescope').load_extension('fzf')
+    --
+    --         -- local config_dir = vim.fn.fnamemodify(vim.env.MYVIMRC, ':h')
+    --         local config_dir = vim.fn.stdpath('config')
+    --
+    --         local builtin = require('telescope.builtin')
+    --         vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
+    --         vim.keymap.set('n', '<leader>fr', builtin.oldfiles, { desc = 'Telescope find recent files' })
+    --         vim.keymap.set('n', '<leader>fs', builtin.live_grep, { desc = 'Telescope livegrep' })
+    --         vim.keymap.set('n', '<leader>fp',
+    --             function()
+    --                 builtin.find_files({
+    --                     prompt_title = "find files in vim's config",
+    --                     cwd = config_dir,
+    --                 })
+    --             end,
+    --             { desc = 'Telescope livegrep' })
+    --         vim.keymap.set('n', '<leader>bb', builtin.buffers, { desc = 'Telescope buffers' })
+    --         vim.keymap.set('n', '<leader>hh', builtin.help_tags, { desc = 'Telescope help tags' })
+    --     end,
+    -- },
+}
