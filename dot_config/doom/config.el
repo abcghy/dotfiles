@@ -29,6 +29,8 @@
 ;; refresh your font settings. If Emacs still can't find your font, it likely
 ;; wasn't installed correctly. Font issues are rarely Doom issues!
 ;; (setq doom-font (font-spec :family "Sarasa Term SC Nerd" :size 18 :weight 'semi-light))
+;; |中|文|测|试|门|入|灌|
+;; |It|'s| j|us|t |a |en|gl|is|h |te|st|
 
 (setq maple-font
       (font-spec
