@@ -1,0 +1,72 @@
+#!/bin/sh
+# toggle-niri-center - Toggle the center-focused-column setting in niri config
+#
+# This script toggles the center-focused-column setting between "always" and "never"
+# in the niri window manager configuration file.
+#
+# Usage: ./toggle-niri-center
+#
+# The script will modify the configuration file and print the new setting value.
+
+# Configuration
+CONFIG_FILE="$HOME/.config/niri/config.kdl"
+BACKUP_FILE="$HOME/.config/niri/config.kdl.bak"
+
+# Error handling function
+error_exit() {
+    echo "ERROR: $1" >&2
+    # Restore backup if it exists and we had created one (not an initial error)
+    if [ -n "$BACKUP_CREATED" ] && [ -f "$BACKUP_FILE" ]; then
+        echo "Restoring from backup..." >&2
+        cp "$BACKUP_FILE" "$CONFIG_FILE" || echo "Failed to restore backup!" >&2
+        echo "Restore completed" >&2
+    fi
+    exit 1
+}
+
+# Check if the config file exists
+if [ ! -f "$CONFIG_FILE" ]; then
+    error_exit "Config file not found at $CONFIG_FILE"
+fi
+
+# Create a backup of the original file
+cp -f "$CONFIG_FILE" "$BACKUP_FILE" || error_exit "Failed to create backup"
+BACKUP_CREATED=1
+echo "Backup created at $BACKUP_FILE"
+
+# Check the current setting
+CURRENT_VALUE=$(grep -o 'center-focused-column[[:space:]]\+"always\|center-focused-column[[:space:]]\+"never' "$CONFIG_FILE" | grep -o 'always\|never')
+
+if [ -z "$CURRENT_VALUE" ]; then
+    error_exit "Could not find center-focused-column setting in the config file"
+fi
+
+# Determine the new value
+if [ "$CURRENT_VALUE" = "always" ]; then
+    NEW_VALUE="never"
+else
+    NEW_VALUE="always"
+fi
+
+# Replace the setting with the new value
+# Use a different delimiter (|) to avoid issues with quotes in the replacement
+sed -i "s|center-focused-column[[:space:]]\+\"$CURRENT_VALUE\"|center-focused-column \"$NEW_VALUE\"|" "$CONFIG_FILE" || error_exit "Failed to update configuration"
+
+echo "Successfully changed center-focused-column from \"$CURRENT_VALUE\" to \"$NEW_VALUE\""
+
+# Attempt to reload niri configuration
+echo "Attempting to reload niri configuration..."
+if command -v niri >/dev/null 2>&1; then
+    if niri msg reload-config >/dev/null 2>&1; then
+        echo "Successfully reloaded niri configuration"
+    else
+        echo "Note: Could not automatically reload niri configuration"
+        echo "You may need to manually reload the configuration"
+    fi
+else
+    echo "Note: niri command not found"
+    echo "You may need to manually reload the configuration"
+fi
+
+exit 0
+

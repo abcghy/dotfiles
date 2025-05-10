@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if pgrep -x "waybar" > /dev/null; then
+  killall waybar
+  echo "waybar stopped"
+else
+  waybar &
+  echo "waybar started"
+fi
