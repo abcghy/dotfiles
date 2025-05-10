@@ -14,31 +14,8 @@
         glob: true
         path: home/.*
 
-  # ~/.ideavimrc: .ideavimrc
-  #
-  # ~/Library/Application Support/lazygit/config.yml:
-  #   path: lazygit.yml
-  #   if: '[ "$(uname -s)" = "Darwin" ]'
-  # ~/.config/lazygit/config.yml:
-  #   path: lazygit.yml
-  #   if: '[ "$(uname -s)" = "Linux" ]'
-  #
-  # ~/.zshrc: zsh/.zshrc
-  # ~/.zimrc: zsh/.zimrc
-  # ~/.tmux.conf: .tmux.conf
-  # ~/.p10k.zsh: zsh/.p10k.zsh
-  # ~/.gitconfig: gitconfig/.gitconfig
-  # ~/.config/nvim: nvim
-  # ~/.config/wezterm: wezterm
-  # ~/.config/kitty:
-  #   path: kitty
-  # ~/.config/wezterm:
-  #   path: wezterm
   # ~/.my-emacs.d:
   #   path: emacs
-  # ~/.config/yazi:
-  #   path: yazi
-  #
   # ~/Library/Rime:
   #   glob: true
   #   path: Rime/*
@@ -47,20 +24,10 @@
   #   glob: true
   #   path: Rime/*
   #   if: '[ "$(uname -s)" = "Linux" ]'
-  #
-  # ~/.config/mpv:
-  #   path: mpv
-  # ~/.config/doom:
-  #   path: doom
-  #
-  # # Linux Only
-  # ~/.config/rofi:
-  #   path: linux/rofi
-  #   if: '[ "$(uname -s)" = "Linux" ]'
-  # ~/.xmonad/xmonad.hs:
-  #   path: linux/xmonad/xmonad.hs
-  #   if: '[ "$(uname -s)" = "Linux" ]'
-  # ~/.xmobarrc:
-  #   path: linux/xmonad/.xmobarrc
-  #   if: '[ "$(uname -s)" = "Linux" ]'
 
+# Linux Only
+- link:
+    ~/.config/:
+        glob: true
+        path: dot_config_linux/**
+        if: '[ "$(uname -s)" = "Linux" ]'
