@@ -55,7 +55,7 @@ zmodule zsh-users/zsh-autosuggestions
 # }}} End configuration added by Zim install
 
 
-# zmodule romkatv/powerlevel10k --use degit
+zmodule romkatv/powerlevel10k --use degit
 
 # quick jump
 zmodule https://github.com/agkozak/zsh-z
