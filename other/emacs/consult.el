@@ -1,3 +1,9 @@
+;; some notes for consult
+;; there is a variable called consult-async-min-input default to 3
+;; if you don't want to change this variable and still want to search something within 3 characters
+;; use # to wrap around it like: #雅思#
+;; this will trigger the search immediately
+
 ;; Example configuration for Consult
 (use-package consult
   ;; Replace bindings. Lazily loaded by `use-package'.

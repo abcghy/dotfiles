@@ -1,0 +1,12 @@
+.cache/
+auto-save-list/
+elpa/
+persp-confs/
+straight/
+transient
+.org-id-locations
+bookmarks
+org-roam.db
+recentf
+tramp
+*.el~

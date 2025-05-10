@@ -62,3 +62,4 @@
 (load-user-file "treemacs.el")
 ;; (load-user-file "lsp.el")
 (load-user-file "corfu.el")
+(load-user-file "workspace.el")

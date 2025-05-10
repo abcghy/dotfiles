@@ -14,8 +14,9 @@
         glob: true
         path: home/.*
 
-  # ~/.my-emacs.d:
-  #   path: emacs
+    # Other Things
+    ~/.my-emacs.d:
+        path: other/emacs
   # ~/Library/Rime:
   #   glob: true
   #   path: Rime/*

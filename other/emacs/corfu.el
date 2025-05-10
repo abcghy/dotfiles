@@ -19,7 +19,8 @@
 
 ;; set this to nil so that org mode won't feels laggy any more if type Chinese Character
 ;; side effect: english spell completion no long exist for every mode
-(setq ispell-alternate-dictionary nil)
+;; (setq ispell-alternate-dictionary nil)
+(setq text-mode-ispell-word-completion nil)
 
 ;; Enhance Corfu with documentation popups (optional)
 ;; (use-package corfu-doc
