@@ -26,6 +26,12 @@
   #   path: Rime/*
   #   if: '[ "$(uname -s)" = "Linux" ]'
 
+# Mac Only
+- link:
+    ~/:
+        glob: true
+        path: home_mac/.*
+
 # Linux Only
 - link:
     ~/.config/:
