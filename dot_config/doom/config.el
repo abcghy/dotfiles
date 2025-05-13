@@ -66,6 +66,16 @@
   (setq org-emphasis-alist
         (cons '("*" (:foreground "red" :weight bold))
               (assoc-delete-all "*" org-emphasis-alist))))
+(after! org
+  (custom-set-faces!
+    '(org-level-1 :weight normal :foreground "#1E90FF")
+    '(org-level-2 :weight normal :foreground "#9370DB")
+    '(org-level-3 :weight normal :foreground "#3CB371")
+    '(org-level-4 :weight normal :foreground "#FF6347")
+    '(org-level-5 :weight normal :foreground "#FF8C00")
+    '(org-level-6 :weight normal :foreground "#20B2AA")
+    '(org-level-7 :weight normal :foreground "#C71585")
+    '(org-level-8 :weight normal :foreground "#9ACD32")))
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
