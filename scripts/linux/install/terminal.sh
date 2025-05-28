@@ -1,1 +1,4 @@
-# sudo pacman -S --noconfirm --needed yazi tmux tmux cmatrix fastfetch btop zsh oh-my-posh
+sudo pacman -S --noconfirm --needed zsh
+sudo pacman -S --noconfirm --needed kitty
+sudo pacman -S --noconfirm --needed yazi tmux cmatrix fastfetch btop fzf
+sudo pacman -S --noconfirm --needed rsync
