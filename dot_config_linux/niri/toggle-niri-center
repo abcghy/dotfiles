@@ -54,19 +54,7 @@ sed -i "s|center-focused-column[[:space:]]\+\"$CURRENT_VALUE\"|center-focused-co
 
 echo "Successfully changed center-focused-column from \"$CURRENT_VALUE\" to \"$NEW_VALUE\""
 
-# Attempt to reload niri configuration
-echo "Attempting to reload niri configuration..."
-if command -v niri >/dev/null 2>&1; then
-    if niri msg reload-config >/dev/null 2>&1; then
-        echo "Successfully reloaded niri configuration"
-    else
-        echo "Note: Could not automatically reload niri configuration"
-        echo "You may need to manually reload the configuration"
-    fi
-else
-    echo "Note: niri command not found"
-    echo "You may need to manually reload the configuration"
-fi
+notify-send -t 5000 "Successfully changed center-focused-column from \"$CURRENT_VALUE\" to \"$NEW_VALUE\""
 
 exit 0
 

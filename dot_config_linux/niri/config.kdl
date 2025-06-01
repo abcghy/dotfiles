@@ -275,7 +275,7 @@ spawn-at-startup "swayosd-server"
 environment {
   DISPLAY ":12"
   GOLDENDICT_FORCE_WAYLAND "1"
-  GDK_SCALE "2"
+  // GDK_SCALE "2"
 }
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
@@ -585,9 +585,9 @@ binds {
     Mod+Ctrl+F { expand-column-to-available-width; }
 
     Mod+C { center-column; }
-    Mod+Shift+C { spawn "~/.local/bin/toggle-niri-center"; }
+    Mod+Shift+C { spawn "~/.dotfiles/dot_config_linux/niri/toggle-niri-center"; }
 
-    Mod+Shift+O { spawn "~/.local/bin/toggle-waybar"; }
+    Mod+Shift+O { spawn "~/.dotfiles/dot_config_linux/waybar/toggle-waybar"; }
 
     // Finer width adjustments.
     // This command can also:

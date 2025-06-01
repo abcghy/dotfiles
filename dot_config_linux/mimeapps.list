@@ -1,0 +1,28 @@
+[Default Applications]
+x-scheme-handler/http=userapp-Floorp-RBN662.desktop
+x-scheme-handler/https=userapp-Floorp-RBN662.desktop
+x-scheme-handler/chrome=userapp-Floorp-RBN662.desktop
+text/html=userapp-Floorp-RBN662.desktop
+application/x-extension-htm=userapp-Floorp-RBN662.desktop
+application/x-extension-html=userapp-Floorp-RBN662.desktop
+application/x-extension-shtml=userapp-Floorp-RBN662.desktop
+application/xhtml+xml=userapp-Floorp-RBN662.desktop
+application/x-extension-xhtml=userapp-Floorp-RBN662.desktop
+application/x-extension-xht=userapp-Floorp-RBN662.desktop
+image/jpeg=swayimg.desktop;qimgv.desktop
+image/png=swayimg.desktop;qimgv.desktop
+image/webp=swayimg.desktop;qimgv.desktop
+
+[Added Associations]
+x-scheme-handler/http=userapp-Floorp-RBN662.desktop;
+x-scheme-handler/https=userapp-Floorp-RBN662.desktop;
+x-scheme-handler/chrome=userapp-Floorp-RBN662.desktop;
+text/html=userapp-Floorp-RBN662.desktop;
+application/x-extension-htm=userapp-Floorp-RBN662.desktop;
+application/x-extension-html=userapp-Floorp-RBN662.desktop;
+application/x-extension-shtml=userapp-Floorp-RBN662.desktop;
+application/xhtml+xml=userapp-Floorp-RBN662.desktop;
+application/x-extension-xhtml=userapp-Floorp-RBN662.desktop;
+application/x-extension-xht=userapp-Floorp-RBN662.desktop;
+image/jpeg=org.gnome.Loupe.desktop
+image/png=org.gnome.Loupe.desktop

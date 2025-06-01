@@ -1,0 +1,8 @@
+[info]
+info_timeout = 2
+
+[viewer]
+window = #00000000
+
+[keys.viewer]
+i = info viewer
