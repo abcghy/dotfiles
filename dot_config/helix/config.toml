@@ -2,9 +2,15 @@ theme = "onelight"
 
 [editor]
 line-number = "relative"
+cursorline = true
 
 [editor.cursor-shape]
 insert = "bar"
+
+[editor.statusline]
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
 
 # [keys.normal]
 # C-g = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw"]
