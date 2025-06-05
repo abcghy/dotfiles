@@ -43,3 +43,26 @@ end, { desc = "[o]pen [t]erminal", })
 
 vim.keymap.set("n", "<M-J>", "<cmd>cnext<CR>")
 vim.keymap.set("n", "<M-K>", "<cmd>cprev<CR>")
+
+--- lsp configs
+vim.lsp.enable({ 'lua_ls' })
+
+vim.o.winborder = 'rounded'
+
+vim.cmd("set completeopt+=noselect")
+vim.diagnostic.config({
+    virtual_text = true,
+    virtual_lines = {
+        current_line = true,
+    }
+})
+
+-- vim.api.nvim_create_autocmd('LspAttach', {
+--   callback = function(ev)
+--     local client = vim.lsp.get_client_by_id(ev.data.client_id)
+--     if client:supports_method('textDocument/completion') then
+--       vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
+--     end
+--   end,
+-- })
+
