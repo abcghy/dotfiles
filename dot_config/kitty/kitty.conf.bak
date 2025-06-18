@@ -1,7 +1,7 @@
 # vim:fileencoding=utf-8:foldmethod=marker
 
 # BEGIN_KITTY_FONTS
-font_family      family="Maple Mono NF CN"
+font_family      family='Maple Mono NF CN' style=ExtraLight
 bold_font        auto
 italic_font      auto
 bold_italic_font auto
@@ -956,7 +956,7 @@ font_features ExtraLight
 #: set the vertical and horizontal sides. Three values set top,
 #: horizontal and bottom. Four values set top, right, bottom and left.
 
-# window_padding_width 0
+window_padding_width 4
 
 #: The window padding (in pts) (blank area between the text and the
 #: window border). A single value sets all four sides. Two values set
@@ -1113,7 +1113,7 @@ font_features ExtraLight
 #: The second number is the margin between the tab bar and the
 #: contents of the current tab.
 
-# tab_bar_style fade
+tab_bar_style slant
 
 #: The tab bar style, can be one of:
 
@@ -1469,6 +1469,7 @@ font_features ExtraLight
 #: Advanced {{{
 
 # shell .
+# shell /opt/homebrew/bin/fish -N --login --interactive
 
 #: The shell program to execute. The default value of . means to use
 #: the value of of the SHELL environment variable or if unset,
@@ -2722,6 +2723,8 @@ font_features ExtraLight
 
 
 # BEGIN_KITTY_THEME
-# Catppuccin-Latte
+# Tokyo Night
 include current-theme.conf
 # END_KITTY_THEME
+
+include ${KITTY_OS}.conf
