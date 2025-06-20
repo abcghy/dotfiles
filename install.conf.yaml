@@ -17,14 +17,15 @@
     # Other Things
     ~/.my-emacs.d:
         path: other/emacs
+
   # ~/Library/Rime:
   #   glob: true
   #   path: Rime/*
   #   if: '[ "$(uname -s)" = "Darwin" ]'
-  # ~/.local/share/fcitx5/rime:
-  #   glob: true
-  #   path: Rime/*
-  #   if: '[ "$(uname -s)" = "Linux" ]'
+    ~/.local/share/fcitx5/rime:
+      glob: true
+      path: other/rime/*
+      if: '[ "$(uname -s)" = "Linux" ]'
 
 # Mac Only
 - link:

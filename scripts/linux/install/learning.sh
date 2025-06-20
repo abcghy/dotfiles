@@ -4,3 +4,4 @@ sudo pacman -S --noconfirm --needed zathura zathura-pdf-mupdf
 sudo pacman -S --noconfirm --needed okular
 
 yay -S --needed goldendict-ng
+yay -S --needed readest

@@ -1,6 +1,9 @@
 sudo pacman -S --noconfirm --needed neovim tmux tmuxp
 sudo pacman -S --noconfirm --needed tldr fd ripgrep fzf
 sudo pacman -S --noconfirm --needed git lazygit
+sudo pacman -S --noconfirm --needed pastel
+sudo pacman -S --noconfirm --needed sbcl
+sudo pacman -S --noconfirm --needed quicklisp
 # lazygit httpie sttr lnav bat
 
 yay -S --needed visual-studio-code-bin
