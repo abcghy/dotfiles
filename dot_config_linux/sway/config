@@ -1,5 +1,7 @@
 exec_always ./toggle.sh
 exec swww-daemon
+exec mako
+exec fcitx5
 
 #---- some variables
 set $mod Alt
@@ -70,27 +72,34 @@ bindsym $mod+Equal resize grow width 5 ppt
 bindsym $mod+f fullscreen
 
 #---- sway bar configs
+# bar {
+#     # mode hide
+#     # hidden_state hide
+#     modifier $mod
+#     # font $uifont
+#     position top
+#
+#     # When the status_command prints a new line to stdout, swaybar updates.
+#     # The default just shows the current date and time.
+#     status_command while date +'%-d.%-m.%Y. %H:%M:%S %p'; do sleep 1; done
+#
+#     colors {
+#         statusline #ffffff
+#         background #121212
+#         background #00000033
+#         focused_workspace #121212 #18b218 #232627
+#         active_workspace #121212 $highlight #232627
+#         inactive_workspace #121212 #7f8c8d #232627
+#     }
+# }
 bar {
-    # mode hide
-    # hidden_state hide
-    modifier $mod
-    # font $uifont
+    status_command SCRIPT_DIR=~/.config/i3blocks i3blocks
     position top
 
-    # When the status_command prints a new line to stdout, swaybar updates.
-    # The default just shows the current date and time.
-    status_command while date +'%-d.%-m.%Y. %H:%M:%S %p'; do sleep 1; done
-
     colors {
-        statusline #ffffff
-        background #121212
         background #00000033
-        focused_workspace #121212 #18b218 #232627
-        active_workspace #121212 $highlight #232627
-        inactive_workspace #121212 #7f8c8d #232627
     }
 }
-
 
 #---- monitors
 output "ViewSonic Corporation VX2780-4K-hd VP9190800933" {
@@ -110,6 +119,9 @@ gaps inner 8
 # gaps outer 0
 # smart_gaps on
 
+client.focused #FF0000 #FF9900 #000000
+client.focused_inactive #333333 #5f676a #000000
+client.unfocused #333333 #222222 #ffffff
 
 #---- input
 #---- mouse
@@ -121,8 +133,12 @@ input type:pointer {
     scroll_factor 0.5
 }
 
+focus_follows_mouse no
+
 input type:touchpad {
     natural_scroll enabled
+
+    tap enabled
 }
 
 
