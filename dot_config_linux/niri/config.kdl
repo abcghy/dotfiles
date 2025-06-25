@@ -114,6 +114,10 @@ output "eDP-1" {
   variable-refresh-rate
 }
 
+output "Winit" {
+    scale 2
+}
+
 // Settings that influence how windows are positioned and sized.
 // Find more information on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
@@ -625,6 +629,7 @@ binds {
     Ctrl+Print { screenshot-screen; }
     Alt+Print { screenshot-window; }
     Mod+Ctrl+S { screenshot-window; }
+    Mod+Shift+S { screenshot; }
 
     // Applications such as remote-desktop clients and software KVM switches may
     // request that niri stops processing the keyboard shortcuts defined here
