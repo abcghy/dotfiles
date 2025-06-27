@@ -1,7 +1,9 @@
 exec_always ./toggle.sh
+exec hyperidle
 exec swww-daemon
 exec mako
 exec fcitx5
+exec swayosd-server
 
 #---- some variables
 set $mod Alt
@@ -71,6 +73,21 @@ bindsym $mod+Equal resize grow width 5 ppt
 
 bindsym $mod+f fullscreen
 
+
+#
+# Utilities:
+#
+    # Special keys to adjust volume via PulseAudio
+    bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
+    # bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5%
+    # bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@ +5%
+    bindsym --locked XF86AudioLowerVolume exec swayosd-client --output-volume lower; exec pkill -SIGRTMIN+10 i3blocks
+    bindsym --locked XF86AudioRaiseVolume exec swayosd-client --output-volume raise; exec pkill -SIGRTMIN+10 i3blocks
+    bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle
+    # Special keys to adjust brightness via brightnessctl
+    bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-; exec pkill -SIGRTMIN+11 i3blocks
+    bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+; exec pkill -SIGRTMIN+11 i3blocks
+
 #---- sway bar configs
 # bar {
 #     # mode hide
@@ -104,6 +121,11 @@ bar {
 #---- monitors
 output "ViewSonic Corporation VX2780-4K-hd VP9190800933" {
     scale 2
+    pos 0 0
+}
+
+output "eDP-1" {
+    pos 240 1080
 }
 
 bindswitch --reload --locked lid:on output $laptop disable
@@ -138,9 +160,22 @@ focus_follows_mouse no
 input type:touchpad {
     natural_scroll enabled
 
+    scroll_factor 0.15
     tap enabled
 }
+
+bindgesture swipe:right workspace prev_on_output
+bindgesture swipe:left workspace next_on_output
 
 
 #---- borders
 default_border pixel
+
+
+
+#---- windows rule
+for_window {
+    # pinentry qt needs to be float and above all workspaces
+    [app_id="org.gnupg.pinentry-qt"] floating enable
+    [app_id="org.gnupg.pinentry-qt"] sticky enable
+}
