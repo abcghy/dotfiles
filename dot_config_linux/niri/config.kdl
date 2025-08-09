@@ -108,6 +108,13 @@ output "ViewSonic Corporation VX2780-4K-hd VP9190800933" {
   focus-at-startup
 }
 
+output "DP-3" {
+    scale 2
+    position x=0 y=0
+    focus-at-startup
+    mode "3840x2160@144.000"
+}
+
 output "eDP-1" {
   scale 2
   position x=240 y=1080
@@ -647,5 +654,7 @@ binds {
 
     // Powers off the monitors. To turn them back on, do any input like
     // moving the mouse or pressing any other key.
-    Mod+Shift+P { power-off-monitors; }
+    // Mod+Shift+P { power-off-monitors; }
+
+    F12 { spawn "~/.dotfiles/scripts/kitty_dropdown.sh"; }
 }
