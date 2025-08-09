@@ -1,5 +1,5 @@
 exec_always ./toggle.sh
-exec hyperidle
+exec hypridle
 exec swww-daemon
 exec mako
 exec fcitx5
@@ -31,6 +31,8 @@ bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
+bindsym $mod+v floating toggle
+
 #---- workspaces
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
@@ -42,6 +44,10 @@ bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
+
+# old habit from niri
+bindsym $mod+u workspace next_on_output
+bindsym $mod+i workspace prev_on_output
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
@@ -117,6 +123,8 @@ bar {
         background #00000033
     }
 }
+
+bindsym $mod+Shift+o exec swaymsg bar mode toggle
 
 #---- monitors
 output "ViewSonic Corporation VX2780-4K-hd VP9190800933" {
