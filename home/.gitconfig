@@ -2,6 +2,7 @@
 [user]
 	name = Harry Gao
 	email = beatbox_gao@hotmail.com
+	signingkey = 030C7241EE01EBB1!
 [push]
 	default = current
 [help]
@@ -10,3 +11,5 @@
 	algorithm = histogram
 [includeif "gitdir:~/.dotfiles/"]
 path = "~/.dotfiles/.gitconfig"
+[commit]
+	gpgsign = true
