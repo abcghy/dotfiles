@@ -1,4 +1,4 @@
-sudo pacman -S --noconfirm --needed neomutt isync
+sudo pacman -S --noconfirm --needed neomutt isync w3m
 # sudo pacman -S --noconfirm --needed isync
 #
 # yay -S --needed visual-studio-code-bin
