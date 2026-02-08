@@ -35,6 +35,7 @@
         "backlight",
         // "keyboard-state",
         // "sway/language",
+        "custom/email",
         "battery"
         // "battery#bat2"
         // "clock",
@@ -224,5 +225,13 @@
         "escape": true,
         "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
         // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+    },
+    "custom/email": {
+        "format": "{text} ",
+        "return-type": "json",
+        "interval": 30,
+        "exec": "$HOME/.dotfiles/scripts/linux/mail/waybar-email.sh",
+        "on-click": "kitty neomutt",
+        "on-click-right": "$HOME/.dotfiles/scripts/linux/mail/fetch_and_refresh.sh"
     },
 }

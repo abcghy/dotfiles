@@ -91,3 +91,22 @@ window#waybar {
 #tray {
     border-radius: 0px;
 }
+
+#custom-email {
+  color: @text;
+  background-color: @surface0;
+  padding: 0.5rem 1rem;
+  margin: 5px 0;
+  font-size: 16px;
+  border-radius: 99px;
+}
+
+#custom-email.unread {
+  background-color: @red;
+  color: @mantle;
+}
+
+#custom-email.read {
+  background-color: @surface0;
+  color: @text;
+}
