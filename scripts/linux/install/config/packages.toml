@@ -1,0 +1,263 @@
+# Arch Linux Package Configuration
+# This file defines all available packages and their metadata
+# Users can customize this file to add or remove packages
+
+[categories]
+
+[categories.base]
+name = "Base System"
+description = "Essential system tools and input methods"
+packages = [
+    "man",
+    "fcitx5",
+    "wl-clipboard",
+    "keyd",
+    "bluez-utils",
+    "blueman",
+    "7zip"
+]
+
+[categories.terminal]
+name = "Terminal Environment"
+description = "Terminal emulators and common CLI tools"
+packages = [
+    "zsh",
+    "kitty",
+    "yazi",
+    "tmux",
+    "cmatrix",
+    "fastfetch",
+    "btop",
+    "fzf",
+    "rsync"
+]
+
+[categories.dev]
+name = "Development Tools"
+description = "Programming and development utilities"
+packages = [
+    "neovim",
+    "tmuxp",
+    "tldr",
+    "fd",
+    "ripgrep",
+    "git"
+]
+
+[categories.wm]
+name = "Window Management"
+description = "Tiling window managers and related tools"
+packages = [
+    "niri",
+    "mako",
+    "waybar",
+    "fuzzel",
+    "swww",
+    "swayosd",
+    "brightnessctl",
+    "hyprlock",
+    "hypridle",
+    "xorg-xeyes"
+]
+
+[categories.fonts]
+name = "Fonts"
+description = "System and programming fonts"
+
+[[categories.fonts.packages]]
+name = "noto-fonts"
+description = "Basic font support for most languages"
+recommended = true
+aur = false
+
+[[categories.fonts.packages]]
+name = "noto-fonts-sc"
+description = "Chinese font display support (essential for CJK text)"
+recommended = true
+aur = true
+
+[[categories.fonts.packages]]
+name = "noto-fonts-cjk"
+description = "Complete CJK font support (Chinese, Japanese, Korean)"
+recommended = false
+aur = false
+
+[[categories.fonts.packages]]
+name = "maplemono-nf-cn"
+description = "Programming font with Nerd Font icons and Chinese support"
+recommended = true
+aur = true
+
+[[categories.fonts.packages]]
+name = "ttf-maple-mono"
+description = "Maple Mono programming font (without Nerd Font)"
+recommended = false
+aur = true
+
+[[categories.fonts.packages]]
+name = "nerd-fonts-sarasa-term"
+description = "Terminal-specific font with Nerd Font icons"
+recommended = false
+aur = true
+
+[[categories.fonts.packages]]
+name = "ttf-jetbrains-mono-nerd"
+description = "JetBrains Mono with Nerd Font symbols"
+recommended = false
+aur = true
+
+[[categories.fonts.packages]]
+name = "otf-font-awesome"
+description = "Icon font required by waybar and other status bars"
+recommended = true
+aur = false
+
+[[categories.fonts.packages]]
+name = "ttf-font-awesome"
+description = "Icon font alternative (TrueType version)"
+recommended = false
+aur = false
+
+[[categories.fonts.packages]]
+name = "ttf-times-new-roman"
+description = "Standard serif font for web and document display"
+recommended = false
+aur = true
+
+[[categories.fonts.packages]]
+name = "otf-lora-cyrillic"
+description = "Reading font for e-books (used by foliate and similar apps)"
+recommended = false
+aur = true
+
+[[categories.fonts.packages]]
+name = "adobe-source-han-sans"
+description = "Adobe's Source Han Sans CJK fonts"
+recommended = false
+aur = false
+
+[[categories.fonts.packages]]
+name = "adobe-source-han-serif"
+description = "Adobe's Source Han Serif CJK fonts"
+recommended = false
+aur = false
+
+[categories.entertainment]
+name = "Entertainment"
+description = "Media players and entertainment applications"
+packages = [
+    "mpv",
+    "telegram-desktop",
+    "swayimg",
+    "yt-dlp",
+    "ffmpeg"
+]
+
+[categories.productivity]
+name = "Productivity"
+description = "Email, notes, and productivity tools"
+packages = [
+    "neomutt",
+    "isync",
+    "w3m"
+]
+
+[optional]
+
+[optional.tools]
+name = "Optional Tools"
+description = "Specialized tools not needed by everyone"
+
+[[optional.tools.items]]
+name = "sbcl"
+description = "Steel Bank Common Lisp - A high performance Lisp compiler"
+selected_by_default = false
+aur = false
+
+[[optional.tools.items]]
+name = "quicklisp"
+description = "Library manager for Common Lisp"
+selected_by_default = false
+aur = false
+
+[[optional.tools.items]]
+name = "tsukimi-bin"
+description = "Anime streaming client for Jellyfin/Emby"
+selected_by_default = false
+aur = true
+
+[[optional.tools.items]]
+name = "ncspot"
+description = "Spotify TUI client (terminal-based)"
+selected_by_default = false
+aur = false
+
+[[optional.tools.items]]
+name = "pastel"
+description = "Command-line tool to generate, analyze, convert and manipulate colors"
+selected_by_default = false
+aur = false
+
+[[optional.tools.items]]
+name = "glow"
+description = "Render markdown on the CLI, with pizzazz!"
+selected_by_default = false
+aur = false
+
+[optional.dev-env]
+name = "Development Environments"
+description = "Programming language environments"
+
+[[optional.dev-env.items]]
+name = "python"
+description = "Python programming environment with pip"
+method = "pacman"
+detect_cmd = "python --version"
+
+[[optional.dev-env.items]]
+name = "nodejs"
+description = "Node.js JavaScript runtime (installed via fnm)"
+method = "fnm"
+detect_cmd = "node --version"
+
+[[optional.dev-env.items]]
+name = "rust"
+description = "Rust programming environment with cargo"
+method = "rustup"
+detect_cmd = "rustc --version"
+
+[[optional.dev-env.items]]
+name = "go"
+description = "Go programming language"
+method = "pacman"
+detect_cmd = "go version"
+
+[presets]
+
+[presets.minimal]
+name = "Minimal Install"
+description = "Basic system + Terminal environment"
+categories = ["base", "terminal"]
+
+[presets.developer]
+name = "Developer Workstation"
+description = "Complete setup for programming and development"
+categories = ["base", "terminal", "dev", "fonts", "wm"]
+font_selections = ["noto-fonts", "noto-fonts-sc", "maplemono-nf-cn", "otf-font-awesome"]
+optional_tools = ["pastel", "glow"]
+dev_envs = ["python", "nodejs", "rust"]
+
+[presets.gaming]
+name = "Gaming & Entertainment"
+description = "Optimized for gaming and media consumption"
+categories = ["base", "terminal", "wm", "fonts", "entertainment"]
+font_selections = ["noto-fonts", "noto-fonts-sc", "otf-font-awesome"]
+extra_packages = ["steam"]
+
+[presets.full]
+name = "Full Install"
+description = "Install everything (may take a long time)"
+categories = ["base", "terminal", "dev", "fonts", "wm", "entertainment", "productivity"]
+font_selections = ["noto-fonts", "noto-fonts-sc", "noto-fonts-cjk", "maplemono-nf-cn", "nerd-fonts-sarasa-term", "otf-font-awesome"]
+optional_tools = ["sbcl", "quicklisp", "tsukimi-bin", "ncspot", "pastel", "glow"]
+dev_envs = ["python", "nodejs", "rust", "go"]
