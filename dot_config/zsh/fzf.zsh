@@ -20,6 +20,10 @@
 # Refer to that file for explanation.
 if 'zmodload' 'zsh/parameter' 2>'/dev/null' && (( ${+options} )); then
   __fzf_key_bindings_options="options=(${(j: :)${(kv)options[@]}})"
+  # The `zle` option cannot be toggled while ZLE is active (e.g. `zsh -i -c`),
+  # so drop it from the restore list to avoid "can't change option: zle".
+  __fzf_key_bindings_options=${__fzf_key_bindings_options/ zle on/}
+  __fzf_key_bindings_options=${__fzf_key_bindings_options/ zle off/}
 else
   () {
     __fzf_key_bindings_options="setopt"
@@ -179,6 +183,10 @@ if 'zmodload' 'zsh/parameter' 2>'/dev/null' && (( ${+options} )); then
   # together separated by spaces. __fzf_completion_options ends up with a value
   # like this: "options=(shwordsplit off aliases on ...)".
   __fzf_completion_options="options=(${(j: :)${(kv)options[@]}})"
+  # The `zle` option cannot be toggled while ZLE is active (e.g. `zsh -i -c`),
+  # so drop it from the restore list to avoid "can't change option: zle".
+  __fzf_completion_options=${__fzf_completion_options/ zle on/}
+  __fzf_completion_options=${__fzf_completion_options/ zle off/}
 else
   # This branch is much slower because it forks to get the names of all
   # zsh options. It's possible to eliminate this fork but it's not worth the

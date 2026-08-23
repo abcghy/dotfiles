@@ -1,0 +1,14 @@
+[Unit]
+Description=Recover Bluetooth audio sinks dropped by PipeWire after an unclean disconnect
+After=pipewire.service wireplumber.service
+Wants=pipewire.service wireplumber.service
+
+[Service]
+Type=simple
+ExecStart=%h/.local/bin/bt-audio-healer
+Restart=on-failure
+RestartSec=5
+Slice=session.slice
+
+[Install]
+WantedBy=default.target

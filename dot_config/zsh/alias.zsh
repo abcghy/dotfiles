@@ -1,4 +1,6 @@
 alias vim=nvim
+alias v=nvim
+alias oc=opencode
 alias ra=ranger
 alias lg=lazygit
 alias ff=fastfetch

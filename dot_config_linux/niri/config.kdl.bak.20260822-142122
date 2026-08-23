@@ -293,8 +293,6 @@ spawn-at-startup "waybar"
 spawn-at-startup "awww-daemon"
 spawn-at-startup "awww" "img" "$HOME/Pictures/wallpapers/remu.png"
 spawn-at-startup "swayosd-server"
-spawn-at-startup "/usr/lib/mate-polkit/polkit-mate-authentication-agent-1"
-spawn-at-startup "udiskie" "-a" "-n" "-t" "--appindicator" "-f" "nautilus"
 
 environment {
   DISPLAY ":12"

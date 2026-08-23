@@ -36,6 +36,7 @@
         // "keyboard-state",
         // "sway/language",
         "custom/email",
+        "custom/weather",
         "battery"
         // "battery#bat2"
         // "clock",
@@ -233,5 +234,12 @@
         "exec": "$HOME/.dotfiles/scripts/linux/mail/waybar-email.sh",
         "on-click": "kitty neomutt",
         "on-click-right": "$HOME/.dotfiles/scripts/linux/mail/fetch_and_refresh.sh"
+    },
+    "custom/weather": {
+        "return-type": "json",
+        "interval": 900,
+        "signal": 8,
+        "exec": "$HOME/.dotfiles/scripts/linux/weather/waybar-weather.sh",
+        "on-click": "pkill -RTMIN+8 waybar"
     },
 }

@@ -1,0 +1,236 @@
+#!/usr/bin/env python3
+"""Restore Bluetooth audio sinks that PipeWire drops after an unclean disconnect.
+
+When headphones are powered off mid-stream the A2DP transport dies with
+"terminated unexpectedly", WirePlumber leaves the node in an error state and
+tears the card down.  BlueZ still reports the device as Connected, so on
+power-up it reconnects but never comes back in the output list.
+
+Detection: the device is Connected, advertises an A2DP sink, yet no
+bluez_card.<MAC> exists in PipeWire.  A card that is merely switched to the
+"off" profile still shows up, so a deliberate profile choice is left alone.
+
+Cure: a clean Disconnect/Connect cycle over D-Bus, which is what a human would
+do by hand.
+"""
+
+import subprocess
+import sys
+
+import gi
+
+gi.require_version("GLib", "2.0")
+gi.require_version("Gio", "2.0")
+from gi.repository import GLib, Gio  # noqa: E402
+
+BLUEZ = "org.bluez"
+DEVICE_IFACE = "org.bluez.Device1"
+PROPS_IFACE = "org.freedesktop.DBus.Properties"
+A2DP_SINK_UUID = "0000110b-0000-1000-8000-00805f9b34fb"
+
+SETTLE_SECONDS = 8  # let PipeWire build the card before judging it missing
+SWEEP_SECONDS = 30  # safety net for states no signal announced
+DISCONNECT_PAUSE = 3  # between Disconnect and Connect
+VERIFY_PAUSE = 8  # after Connect, before checking whether it worked
+MAX_ATTEMPTS = 3  # per episode, then back off
+BACKOFF_SECONDS = 300
+
+
+def log(msg):
+    print(msg, file=sys.stderr, flush=True)
+
+
+def pw_card_present(mac):
+    """True/False, or None when PipeWire could not be queried (then do nothing)."""
+    name = "bluez_card." + mac.replace(":", "_")
+    try:
+        out = subprocess.run(
+            ["pactl", "list", "cards", "short"],
+            capture_output=True,
+            text=True,
+            timeout=5,
+        )
+    except (OSError, subprocess.SubprocessError) as exc:
+        log(f"pactl unavailable ({exc}); skipping check")
+        return None
+    if out.returncode != 0:
+        log(f"pactl failed rc={out.returncode}; skipping check")
+        return None
+    return name in out.stdout
+
+
+class Healer:
+    def __init__(self):
+        self.bus = Gio.bus_get_sync(Gio.BusType.SYSTEM, None)
+        # path -> {"attempts": int, "busy": bool, "blocked_until": float}
+        self.state = {}
+        self.bus.signal_subscribe(
+            BLUEZ,
+            PROPS_IFACE,
+            "PropertiesChanged",
+            None,
+            DEVICE_IFACE,
+            Gio.DBusSignalFlags.NONE,
+            self.on_properties_changed,
+        )
+        GLib.timeout_add_seconds(SWEEP_SECONDS, self.sweep)
+
+    # ---- D-Bus helpers -------------------------------------------------
+
+    def get_prop(self, path, name):
+        try:
+            res = self.bus.call_sync(
+                BLUEZ,
+                path,
+                PROPS_IFACE,
+                "Get",
+                GLib.Variant("(ss)", (DEVICE_IFACE, name)),
+                GLib.VariantType("(v)"),
+                Gio.DBusCallFlags.NONE,
+                5000,
+                None,
+            )
+        except GLib.Error:
+            return None
+        return res.unpack()[0]
+
+    def known_devices(self):
+        try:
+            res = self.bus.call_sync(
+                BLUEZ,
+                "/",
+                "org.freedesktop.DBus.ObjectManager",
+                "GetManagedObjects",
+                None,
+                GLib.VariantType("(a{oa{sa{sv}}})"),
+                Gio.DBusCallFlags.NONE,
+                5000,
+                None,
+            )
+        except GLib.Error as exc:
+            log(f"cannot list BlueZ objects: {exc.message}")
+            return []
+        return [p for p, ifaces in res.unpack()[0].items() if DEVICE_IFACE in ifaces]
+
+    def device_call(self, path, method, on_done):
+        self.bus.call(
+            BLUEZ,
+            path,
+            DEVICE_IFACE,
+            method,
+            None,
+            None,
+            Gio.DBusCallFlags.NONE,
+            30000,
+            None,
+            on_done,
+        )
+
+    # ---- policy --------------------------------------------------------
+
+    def st(self, path):
+        return self.state.setdefault(
+            path, {"attempts": 0, "busy": False, "blocked_until": 0.0}
+        )
+
+    def is_audio_sink(self, path):
+        uuids = self.get_prop(path, "UUIDs") or []
+        return A2DP_SINK_UUID in uuids
+
+    def on_properties_changed(self, _conn, _sender, path, _iface, _signal, params):
+        changed = params.unpack()[1]
+        if "Connected" not in changed:
+            return
+        st = self.st(path)
+        if changed["Connected"]:
+            if not st["busy"]:
+                GLib.timeout_add_seconds(SETTLE_SECONDS, self.check, path)
+        else:
+            # A clean teardown ends the episode; next connect starts fresh.
+            if not st["busy"]:
+                st["attempts"] = 0
+
+    def sweep(self):
+        for path in self.known_devices():
+            self.check(path)
+        return True
+
+    def check(self, path):
+        st = self.st(path)
+        if st["busy"] or GLib.get_monotonic_time() / 1e6 < st["blocked_until"]:
+            return False
+        if not self.get_prop(path, "Connected"):
+            return False
+        if not self.is_audio_sink(path):
+            return False
+        mac = self.get_prop(path, "Address")
+        if not mac:
+            return False
+
+        present = pw_card_present(mac)
+        if present is None:
+            return False
+        if present:
+            if st["attempts"]:
+                log(f"{mac}: audio card back, healthy again")
+            st["attempts"] = 0
+            return False
+
+        if st["attempts"] >= MAX_ATTEMPTS:
+            st["blocked_until"] = GLib.get_monotonic_time() / 1e6 + BACKOFF_SECONDS
+            st["attempts"] = 0
+            log(f"{mac}: still no audio card after {MAX_ATTEMPTS} tries, "
+                f"backing off {BACKOFF_SECONDS}s")
+            return False
+
+        st["attempts"] += 1
+        st["busy"] = True
+        name = self.get_prop(path, "Alias") or mac
+        log(f"{name}: connected but no audio card — "
+            f"reconnecting (attempt {st['attempts']}/{MAX_ATTEMPTS})")
+        self.heal(path)
+        return False
+
+    # ---- the cure ------------------------------------------------------
+
+    def heal(self, path):
+        def after_disconnect(conn, res):
+            try:
+                conn.call_finish(res)
+            except GLib.Error as exc:
+                log(f"disconnect failed: {exc.message}")
+            GLib.timeout_add_seconds(DISCONNECT_PAUSE, do_connect)
+
+        def do_connect():
+            self.device_call(path, "Connect", after_connect)
+            return False
+
+        def after_connect(conn, res):
+            try:
+                conn.call_finish(res)
+            except GLib.Error as exc:
+                # Expected when the headphones are simply still switched off.
+                log(f"connect failed: {exc.message}")
+            GLib.timeout_add_seconds(VERIFY_PAUSE, finish)
+
+        def finish():
+            self.st(path)["busy"] = False
+            self.check(path)
+            return False
+
+        self.device_call(path, "Disconnect", after_disconnect)
+
+
+def main():
+    try:
+        Healer()
+    except GLib.Error as exc:
+        log(f"cannot reach BlueZ on the system bus: {exc.message}")
+        return 1
+    log("watching for Bluetooth audio devices that lose their PipeWire card")
+    GLib.MainLoop().run()
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

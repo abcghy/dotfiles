@@ -19,3 +19,13 @@ end
 gpg-connect-agent updatestartuptty /bye >/dev/null
 
 zoxide init fish | source
+
+# opencode
+fish_add_path /home/sakura/.opencode/bin
+
+# pnpm
+set -gx PNPM_HOME "/home/sakura/.local/share/pnpm"
+if not string match -q -- $PNPM_HOME $PATH
+  set -gx PATH "$PNPM_HOME" $PATH
+end
+# pnpm end

@@ -136,3 +136,5 @@
 (after! smartparens
   (sp-local-pair '(org-mode) "~" "~")
   (sp-local-pair '(org-mode) "_" "_"))
+
+(add-to-list 'default-frame-alist '(undecorated . t))

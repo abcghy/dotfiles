@@ -2,7 +2,7 @@
 [user]
 	name = Harry Gao
 	email = beatbox_gao@hotmail.com
-	signingkey = 030C7241EE01EBB1!
+	signingkey = 030C7241EE01EBB1
 [push]
 	default = current
 [help]

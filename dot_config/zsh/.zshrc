@@ -11,7 +11,7 @@ fi
 
 [ -f "/Users/sakura/.ghcup/env" ] && source "/Users/sakura/.ghcup/env" # ghcup-env
 
-. "$HOME/.local/bin/env"
+# . "$HOME/.local/bin/env"
 
 [[ ! -f ~/.config/zsh/export.zsh ]] || source ~/.config/zsh/export.zsh
 [[ ! -f ~/.config/zsh/fzf.zsh ]] || source ~/.config/zsh/fzf.zsh

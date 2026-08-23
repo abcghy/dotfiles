@@ -1,2 +1,46 @@
+# Catppuccin Latte notification cards, matched to the wallpaper.
+font=Maple Mono NF CN 11
+background-color=#eff1f5f2
+text-color=#4c4f69ff
+border-color=#7287fdff
+progress-color=over #7287fd55
+
+width=380
+height=180
+outer-margin=14
+margin=8
+padding=14
+border-size=2
+border-radius=14
+
+icons=1
+max-icon-size=48
+icon-location=left
+icon-border-radius=10
+markup=1
+actions=1
+history=1
+
+format=<b>%s</b>\n%b
+default-timeout=6000
+group-by=app-name,summary
+max-visible=4
+layer=top
+anchor=top-right
+
+[urgency=low]
+text-color=#6c6f85ff
+border-color=#9ca0b0cc
+default-timeout=4000
+
+[urgency=normal]
+border-color=#7287fdff
+
+[urgency=critical]
+background-color=#f5e0e5f8
+border-color=#d20f39ff
+progress-color=over #d20f3966
+default-timeout=0
+
 [summary~="Connection Established"]
 default-timeout=5000
