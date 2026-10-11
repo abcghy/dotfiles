@@ -22,6 +22,10 @@ vim.keymap.set("n", "<leader><leader>x", "<cmd>source %<CR>")
 vim.keymap.set("n", "<leader>x", ":.lua<CR>")
 vim.keymap.set("v", "<leader>x", ":lua<CR>")
 
+-- Disable the built-in number increment/decrement shortcuts.
+vim.keymap.set({ "n", "x" }, "<C-a>", "<Nop>")
+vim.keymap.set({ "n", "x" }, "<C-x>", "<Nop>")
+
 -- easy to read and navigate within text files, can add in the future
 local text_file_types = { "markdown", "org" }
 vim.api.nvim_create_autocmd({ "FileType" }, {
