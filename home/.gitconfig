@@ -2,7 +2,7 @@
 [user]
 	name = Harry Gao
 	email = beatbox_gao@hotmail.com
-	signingkey = 030C7241EE01EBB1!
+	signingkey = 3986F501B3C381BE!
 [push]
 	default = current
 [help]
@@ -13,3 +13,9 @@
 path = "~/.dotfiles/.gitconfig"
 [commit]
 	gpgsign = true
+[credential "https://github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential
