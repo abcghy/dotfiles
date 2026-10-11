@@ -1,6 +1,33 @@
-theme = catppuccin-latte
+theme = dark:Catppuccin Mocha,light:Catppuccin Latte
 
-font-family = "MapleMono NF CN"
-font-style = "ExtraLight"
+font-family = "Maple Mono NF CN"
+font-size = 14
 
-window-decoration = auto
+mouse-hide-while-typing = true
+copy-on-select = clipboard
+cursor-style-blink = false
+cursor-style = block
+adjust-cursor-thickness = 300%
+
+confirm-close-surface = false
+window-theme = system
+resize-overlay = never
+window-save-state = always
+
+shell-integration = zsh
+window-inherit-working-directory = true
+
+unfocused-split-opacity = 0.60
+# background-opacity = 0.90
+
+#macos-option-as-alt = left
+
+keybind = super+h=goto_split:left
+keybind = super+j=goto_split:bottom
+keybind = super+k=goto_split:top
+keybind = super+l=goto_split:right
+
+keybind = super+right=resize_split:right,50
+keybind = super+down=resize_split:down,50
+keybind = super+left=resize_split:left,50
+keybind = super+up=resize_split:up,50
