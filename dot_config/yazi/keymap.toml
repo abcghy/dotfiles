@@ -1,0 +1,5 @@
+[mgr]
+prepend_keymap = [
+	# cv = Code → VSCode: 用 VSCode 打开当前文件夹
+	{ on = [ "c", "v" ], run = "shell 'code .'", desc = "Open current folder in VS Code" },
+]
